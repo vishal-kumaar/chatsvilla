@@ -1,12 +1,13 @@
 "use client";
 
-import React from 'react'
-import SidebarProvider from './sidebar/SidebarProvider';
+import React from "react";
+import SidebarProvider from "./sidebar/SidebarProvider";
+import ThemeProvider from "./theme/ThemeProvider";
 
-export default function Contexts({children}) {
+export default function Contexts({ children }) {
   return (
     <SidebarProvider>
-      {children}
+      <ThemeProvider>{children}</ThemeProvider>
     </SidebarProvider>
-  )
+  );
 }
