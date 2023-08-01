@@ -22,6 +22,7 @@ export default function Sidebar() {
       } h-screen overflow-x-hidden px-3 py-7 transition-all duration-500 ease-in-out flex flex-col gap-12 justify-between`}>
       <div className="flex items-center overflow-hidden gap-x-6 px-2.5 py-2">
         <Image
+          alt="menu"
           src={sidebar ? "/icons/cross.svg" : "/icons/hamburger.svg"}
           height={24}
           width={24}
@@ -42,6 +43,7 @@ export default function Sidebar() {
               : "hover:bg-[#7472ca] dark:hover:bg-[#535252]"
           } px-2.5 py-2 rounded-lg cursor-pointer`}>
           <Image
+            alt="chat"
             src="/icons/chat.svg"
             height={20}
             width={20}
@@ -59,6 +61,7 @@ export default function Sidebar() {
               : "hover:bg-[#7472ca] dark:hover:bg-[#535252]"
           } px-2.5 py-2 rounded-lg cursor-pointer`}>
           <Image
+            alt="search"
             src="/icons/search.svg"
             height={20}
             width={20}
@@ -76,6 +79,7 @@ export default function Sidebar() {
               : "hover:bg-[#7472ca] dark:hover:bg-[#535252]"
           } px-2.5 py-2 rounded-lg cursor-pointer`}>
           <Image
+            alt="profile"
             src="/icons/profile.svg"
             height={20}
             width={20}
@@ -93,6 +97,7 @@ export default function Sidebar() {
               : "hover:bg-[#7472ca] dark:hover:bg-[#535252]"
           } px-2.5 py-2 rounded-lg cursor-pointer`}>
           <Image
+            alt="friends"
             src="/icons/friends.svg"
             height={20}
             width={20}
@@ -110,6 +115,7 @@ export default function Sidebar() {
               : "hover:bg-[#7472ca] dark:hover:bg-[#535252]"
           } px-2.5 py-2 rounded-lg cursor-pointer`}>
           <Image
+            alt="notification"
             src="/icons/notification.svg"
             height={20}
             width={20}
@@ -127,6 +133,7 @@ export default function Sidebar() {
               : "hover:bg-[#7472ca] dark:hover:bg-[#535252]"
           } px-2.5 py-2 rounded-lg cursor-pointer`}>
           <Image
+            alt="setting"
             src="/icons/setting.svg"
             height={20}
             width={20}
@@ -142,6 +149,7 @@ export default function Sidebar() {
           sidebar ? "ml-3.5" : ""
         } px-2.5 py-2 rounded-lg cursor-pointer`}>
         <Image
+          alt="logout"
           src="/icons/logout.svg"
           height={20}
           width={20}
