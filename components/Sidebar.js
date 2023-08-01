@@ -18,7 +18,7 @@ export default function Sidebar() {
   return (
     <aside
       className={`bg-[#5a4de6] dark:bg-black text-white sticky top-0 left-0 ${
-        sidebar ? "w-60" : "w-16"
+        sidebar ? "w-80" : "w-16"
       } h-screen overflow-x-hidden px-3 py-7 transition-all duration-500 ease-in-out flex flex-col gap-12 justify-between`}>
       <div className="flex items-center overflow-hidden gap-x-6 px-2.5 py-2">
         <Image
@@ -37,7 +37,7 @@ export default function Sidebar() {
         } overflow-x-hidden custom-scrollbar`}>
         <Link
           href="/"
-          className={`flex items-center gap-x-4 ${
+          className={`flex items-center outline-none gap-x-4 ${
             isActive("")
               ? "bg-[#4a48ad] dark:bg-[#fff] dark:text-black"
               : "hover:bg-[#7472ca] dark:hover:bg-[#535252]"
@@ -55,7 +55,7 @@ export default function Sidebar() {
         </Link>
         <Link
           href="/search"
-          className={`flex items-center gap-x-4 ${
+          className={`flex items-center outline-none gap-x-4 ${
             isActive("search")
               ? "bg-[#4a48ad] dark:bg-[#fff] dark:text-black"
               : "hover:bg-[#7472ca] dark:hover:bg-[#535252]"
@@ -73,7 +73,7 @@ export default function Sidebar() {
         </Link>
         <Link
           href="/profile"
-          className={`flex items-center gap-x-4 ${
+          className={`flex items-center outline-none gap-x-4 ${
             isActive("profile")
               ? "bg-[#4a48ad] dark:bg-[#fff] dark:text-black"
               : "hover:bg-[#7472ca] dark:hover:bg-[#535252]"
@@ -91,7 +91,7 @@ export default function Sidebar() {
         </Link>
         <Link
           href="/friends"
-          className={`flex items-center gap-x-4 ${
+          className={`flex items-center outline-none gap-x-4 ${
             isActive("friends")
               ? "bg-[#4a48ad] dark:bg-[#fff] dark:text-black"
               : "hover:bg-[#7472ca] dark:hover:bg-[#535252]"
@@ -109,7 +109,7 @@ export default function Sidebar() {
         </Link>
         <Link
           href="/notification"
-          className={`flex items-center gap-x-4 ${
+          className={`flex items-center outline-none gap-x-4 ${
             isActive("notification")
               ? "bg-[#4a48ad] dark:bg-[#fff] dark:text-black"
               : "hover:bg-[#7472ca] dark:hover:bg-[#535252]"
@@ -127,7 +127,7 @@ export default function Sidebar() {
         </Link>
         <Link
           href="/setting"
-          className={`flex items-center gap-x-4 ${
+          className={`flex items-center outline-none gap-x-4 ${
             isActive("setting")
               ? "bg-[#4a48ad] dark:bg-[#fff] dark:text-black"
               : "hover:bg-[#7472ca] dark:hover:bg-[#535252]"
@@ -145,7 +145,7 @@ export default function Sidebar() {
         </Link>
       </div>
       <button
-        className={`flex items-center overflow-hidden gap-x-4 hover:bg-[#7472ca] dark:hover:bg-[#535252] ${
+        className={`flex items-center outline-none overflow-hidden gap-x-4 hover:bg-[#7472ca] dark:hover:bg-[#535252] ${
           sidebar ? "ml-3.5" : ""
         } px-2.5 py-2 rounded-lg cursor-pointer`}>
         <Image
