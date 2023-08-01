@@ -1,6 +1,7 @@
 import "./globals.css";
 import fonts from "./fonts";
 import Contexts from "@/contexts";
+import Sidebar from "@/components/Sidebar";
 
 export const metadata = {
   title: "Chatsvilla: Instant Conversations at Your Fingertips",
@@ -13,7 +14,12 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <body className={fonts}>
-        <Contexts>{children}</Contexts>
+        <Contexts>
+          <div className="flex items-start">
+            <Sidebar />
+            {children}
+          </div>
+        </Contexts>
       </body>
     </html>
   );
