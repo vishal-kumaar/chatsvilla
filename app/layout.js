@@ -13,9 +13,9 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
-      <body className={`bg-[#f5f3f3] ${fonts}`}>
+      <body className={fonts}>
         <Contexts>
-          <div className="flex w-full">
+          <div className="flex w-full bg-[#f5f3f3] dark:bg-[#2B2B2B]">
             <Sidebar />
             {children}
           </div>
