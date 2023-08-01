@@ -34,7 +34,7 @@ export default function Sidebar() {
       <div
         className={`flex flex-col gap-y-6 overflow-y-auto ${
           sidebar ? "px-3" : ""
-        } overflow-x-hidden custom-scrollbar`}>
+        } overflow-x-hidden`}>
         <Link
           href="/"
           className={`flex items-center outline-none gap-x-4 ${
