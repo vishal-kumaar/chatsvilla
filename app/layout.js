@@ -1,5 +1,6 @@
 import "./globals.css";
 import fonts from "./fonts";
+import Contexts from "@/contexts";
 
 export const metadata = {
   title: "Chatsvilla: Instant Conversations at Your Fingertips",
@@ -11,7 +12,9 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
-      <body className={fonts}>{children}</body>
+      <body className={fonts}>
+        <Contexts>{children}</Contexts>
+      </body>
     </html>
   );
 }
