@@ -9,11 +9,16 @@ import { usePathname } from "next/navigation";
 export default function Sidebar() {
   const { sidebar, toggleSidebar } = useContext(SidebarContext);
   const pathname = usePathname();
+  const hideSidebarRoutes = ["/login", "/signup"];
 
   const isActive = (path) => {
     const basePath = pathname.split("/")[1];
     return basePath === path;
   };
+
+  if (hideSidebarRoutes.includes(pathname)) {
+    return null;
+  }
 
   return (
     <aside
