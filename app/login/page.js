@@ -8,7 +8,7 @@ export default function Login() {
   return (
     <main className="w-full py-20 min-h-screen bg-gradient-to-r from-[#5a4de6] via-[#7d59c5] to-[#a78bf6] dark:from-transparent dark:via-transparent dark:to-transparent">
       <div className="flex shadow-2xl w-10/12 mx-auto h-[30rem]">
-        <div className="text-white bg-gradient-to-r from-[#7c70ff] via-[#695cf8] to-[#BC6EC9] dark:from-[#030303] dark:via-[#1f1e1e] dark:to-[#1f1e1e] w-7/12 px-10 pt-32">
+        <div className="text-white bg-gradient-to-r from-[#7c70ff] via-[#695cf8] to-[#BC6EC9] dark:from-[#030303] dark:via-[#1f1e1e] dark:to-[#1f1e1e] w-7/12 px-10 pt-32 rounded-l-xl">
           <h1 className="font-signika text-5xl">Welcome to chatsvilla</h1>
           <p className="font-poppins mt-2 max-w-2xl">
             Connect with friends, family, and colleagues effortlessly, share
@@ -18,7 +18,7 @@ export default function Login() {
             future of chat applications with Chatsvilla
           </p>
         </div>
-        <div className="w-5/12 bg-white dark:bg-[#161616] flex flex-col gap-y-6 justify-center items-center h-[30rem]">
+        <div className="w-5/12 bg-white dark:bg-[#161616] flex flex-col gap-y-6 justify-center items-center h-[30rem] rounded-r-xl">
           <h1 className="font-poppins font-bold text-lg text-[#68647a] dark:text-white">
             USER LOGIN
           </h1>
@@ -35,7 +35,7 @@ export default function Login() {
               <input
                 type="text"
                 placeholder="Email or Username"
-                className="bg-transparent text-sm text-[#807c97] dark:text-[#161616] outline-none placeholder:text-[#807c97] dark:placeholder:text-[#161616] font-poppins"
+                className="bg-transparent text-sm text-[#807c97] dark:text-[#161616] outline-none placeholder:text-[#807c97] dark:placeholder:text-[#161616] font-poppins w-full"
               />
             </div>
             <div className="flex items-center gap-x-2 bg-[#E9E7FF] px-4 py-1.5 rounded-2xl">
@@ -49,7 +49,7 @@ export default function Login() {
               <input
                 type={passowrdType}
                 placeholder="Password"
-                className="bg-transparent text-sm text-[#807c97] dark:text-[#161616] outline-none placeholder:text-[#807c97] dark:placeholder:text-[#161616] font-poppins"
+                className="bg-transparent text-sm text-[#807c97] dark:text-[#161616] outline-none placeholder:text-[#807c97] dark:placeholder:text-[#161616] font-poppins w-full"
               />
             </div>
             <div className="flex justify-between gap-x-1 px-1 text-[#68647a] dark:text-white">
@@ -65,15 +65,25 @@ export default function Login() {
                 />
                 <p className="font-firasans text-sm">Show password</p>
               </div>
-              <p className="font-firasans text-sm cursor-pointer">Forgot password?</p>
+              <p className="font-firasans text-sm cursor-pointer">
+                Forgot password?
+              </p>
             </div>
             <button
               type="submit"
-              className="bg-gradient-to-r from-[#D570BC] to-[#8B6CE2] dark:from-[#3b3a3a] dark:to-[#000] dark:hover:from-[#1f1e1e] dark:hover:to-[#131212] text-white w-fit px-7 py-1 rounded-2xl text-sm mx-auto mt-2">
+              className="bg-gradient-to-r from-[#D570BC] to-[#8B6CE2] hover:from-[#aa6198] hover:to-[#8f72dd] dark:from-[#3b3a3a] dark:to-[#000] dark:hover:from-[#1f1e1e] dark:hover:to-[#131212] text-white w-fit px-7 py-1 rounded-2xl text-sm mx-auto mt-2">
               LOGIN
             </button>
           </form>
-          <p className="font-poppins text-sm text-black dark:text-white mt-2">Don{'\u0027'}t have an account? <Link href="/signup" className="font-bold text-[#5a4de6] dark:text-white">signup</Link>.</p>
+          <p className="font-poppins text-sm text-black dark:text-white mt-2">
+            Don{"\u0027"}t have an account?{" "}
+            <Link
+              href="/signup"
+              className="font-bold text-[#5a4de6] dark:text-white">
+              signup
+            </Link>
+            .
+          </p>
         </div>
       </div>
     </main>
