@@ -43,7 +43,7 @@ export default function Sidebar() {
         <Link
           href="/"
           className={`flex items-center outline-none gap-x-4 ${
-            isActive("")
+            (isActive("") || isActive("chat"))
               ? "bg-[#4a48ad] dark:bg-[#fff] dark:text-black"
               : "hover:bg-[#7472ca] dark:hover:bg-[#535252]"
           } px-2.5 py-2 rounded-lg cursor-pointer`}>

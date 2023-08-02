@@ -1,6 +1,7 @@
 import Image from "next/image";
 import React from "react";
 import SearchBar from "./SearchBar";
+import Link from "next/link";
 
 export default function ChatList() {
   return (
@@ -10,7 +11,7 @@ export default function ChatList() {
       </h1>
       <SearchBar />
       <div className="mt-6 overflow-y-auto h-[calc(100vh-10.5rem)] pb-3">
-        <div className="flex items-center gap-3 w-full border-y px-2.5 py-3 cursor-pointer text-white  bg-[#5a4de6] dark:bg-black hover:bg-[#dfdbdb] dark:hover:bg-[#555353]">
+        <Link href="/chat/1" className="flex items-center gap-3 w-full border-y px-2.5 py-3 cursor-pointer text-white  bg-[#5a4de6] dark:bg-black hover:bg-[#dfdbdb] dark:hover:bg-[#555353]">
           <Image
             alt="profile-pic"
             src="/images/user.svg"
@@ -32,8 +33,8 @@ export default function ChatList() {
               </p>
             </div>
           </div>
-        </div>
-        <div className="flex items-center gap-3 w-full border-y px-2.5 py-3 cursor-pointer hover:bg-[#dfdbdb] dark:hover:bg-[#555353]">
+        </Link>
+        <Link href="/chat/2" className="flex items-center gap-3 w-full border-y px-2.5 py-3 cursor-pointer hover:bg-[#dfdbdb] dark:hover:bg-[#555353]">
           <Image
             alt="profile-pic"
             src="/images/user.svg"
@@ -55,7 +56,7 @@ export default function ChatList() {
               </p>
             </div>
           </div>
-        </div>
+        </Link>
       </div>
     </div>
   );
