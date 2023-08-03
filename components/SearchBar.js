@@ -14,7 +14,7 @@ export default function SearchBar() {
       <input
         type="text"
         placeholder="Search..."
-        className="bg-transparent outline-none border-none font-poppins text-sm placeholder:text-black dark:placeholder:text-white text-black dark:text-white"
+        className="bg-transparent w-full outline-none border-none font-poppins text-sm placeholder:text-black dark:placeholder:text-white text-black dark:text-white"
       />
     </form>
   );
