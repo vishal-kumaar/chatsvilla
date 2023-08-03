@@ -2,7 +2,9 @@ import Image from "next/image";
 import Link from "next/link";
 import React from "react";
 
-export default function Notification({ notification }) {
+export default function Notification() {
+  const notification = "";
+  
   return (
     <main className="w-full px-10 dark:bg-[#161616] pb-9">
       <div className="sticky top-0 pt-10 bg-[#f5f3f3] dark:bg-[#161616] ">
@@ -19,7 +21,7 @@ export default function Notification({ notification }) {
       {notification ? (
         <div className="flex flex-col gap-y-3">
           <Link
-            href="/profile/1"
+            href=""
             className="flex items-center gap-x-4 w-full border-l-4 border-[#5A4DE6] dark:border-white shadow-md px-2.5 py-3 cursor-pointer text-black dark:text-white bg-white dark:bg-[#2B2B2B] hover:bg-[#dfdbdb] dark:hover:bg-[#555353]">
             <Image
               alt="profile-pic"
@@ -36,7 +38,7 @@ export default function Notification({ notification }) {
             </div>
           </Link>
           <Link
-            href="/profile/1"
+            href=""
             className="flex items-center gap-x-4 w-full border-l-4 border-[#5A4DE6] dark:border-white shadow-md px-2.5 py-3 cursor-pointer text-black dark:text-white bg-white dark:bg-[#2B2B2B] hover:bg-[#dfdbdb] dark:hover:bg-[#555353]">
             <Image
               alt="profile-pic"
@@ -53,7 +55,7 @@ export default function Notification({ notification }) {
             </div>
           </Link>
           <Link
-            href="/profile/1"
+            href=""
             className="flex items-center gap-x-4 w-full border-l-4 dark:border-white shadow-md px-2.5 py-3 cursor-pointer text-black dark:text-white bg-white dark:bg-[#2B2B2B] hover:bg-[#dfdbdb] dark:hover:bg-[#555353]">
             <Image
               alt="profile-pic"
@@ -71,7 +73,7 @@ export default function Notification({ notification }) {
           </Link>
         </div>
       ) : (
-        <div className="flex flex-col gap-y-2 h-[29rem] justify-center items-center">
+        <div className="flex flex-col gap-y-2 h-[76vh] justify-center items-center">
           <Image
             alt=""
             src="/icons/notification.svg"
