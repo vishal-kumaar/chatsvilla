@@ -3,7 +3,7 @@ import React from "react";
 
 export default function MessageInput() {
   return (
-    <form className="sticky bottom-0 right-0 flex items-center px-3 py-2 bg-[#f5f3f3] dark:bg-black">
+    <form className="sticky z-50 bottom-0 right-0 flex items-center px-3 py-2 bg-white dark:bg-black">
       <div className="bg-white dark:bg-[#2B2B2B] text-black dark:text-white flex items-center w-full px-3 py-2">
         <input
           type="text"

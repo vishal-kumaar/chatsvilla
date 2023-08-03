@@ -8,7 +8,7 @@ export default function ChatHeader() {
   const [dropdown, setDropdown] = useState(false);
 
   return (
-    <header className="flex justify-between items-center sticky top-0 right-0 px-7 py-2 shadow-2xl bg-[#5a4de6] dark:bg-black text-white">
+    <header className="z-50 flex justify-between items-center sticky top-0 right-0 px-7 py-2 shadow-2xl bg-[#5a4de6] dark:bg-black text-white">
       <Link
         href="/profile/1"
         className="flex items-center gap-4 cursor-pointer">

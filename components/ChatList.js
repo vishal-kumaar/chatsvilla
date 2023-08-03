@@ -5,7 +5,7 @@ import Link from "next/link";
 
 export default function ChatList() {
   return (
-    <div className="pl-8 pr-4 bg-white dark:bg-[#161616] text-black dark:text-white pt-9 w-96 h-screen shadow-2xl">
+    <div className="sticky top-0 pl-8 pr-4 bg-white dark:bg-[#161616] text-black dark:text-white pt-9 w-96 h-screen shadow-2xl">
       <h1 className="font-signika text-2xl mb-5">
         Chat <span className="font-firasans text-xl">(1)</span>
       </h1>
