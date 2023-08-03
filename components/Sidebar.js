@@ -53,7 +53,7 @@ export default function Sidebar() {
             height={20}
             width={20}
             className={`invert ${
-              isActive("") ? "dark:invert-0" : ""
+              (isActive("") || isActive("chat")) ? "dark:invert-0" : ""
             } block w-5 h-5`}
           />
           <p className="font-poppins text-base">Chat</p>
