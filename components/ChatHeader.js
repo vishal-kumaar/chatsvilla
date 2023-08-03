@@ -24,7 +24,14 @@ export default function ChatHeader() {
           <p className="font-poppins text-xs">Online</p>
         </div>
       </Link>
-      <div className="relative" tabIndex={0} onBlur={() => setDropdown(false)}>
+      <div
+        className="relative"
+        tabIndex={0}
+        onBlur={() => {
+          setTimeout(() => {
+            setDropdown(false);
+          }, 500);
+        }}>
         <Image
           alt="option"
           src="/icons/option.svg"
