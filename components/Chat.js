@@ -26,15 +26,21 @@ export default function Chat() {
   return (
     <div className="w-full flex flex-col justify-between">
       <ChatHeader />
-      <div className="flex-grow flex flex-col justify-end gap-y-3 px-2.5 py-3 font-poppins font-medium text-white ">
+      <div className="flex-grow flex flex-col justify-end gap-y-3 px-2.5 py-3 font-poppins font-medium text-white bg-[#DFDBDB] dark:bg-[#2B2B2B]">
         <ChatBubble
-          message="Hello"
+          message="Hi 👋"
           timestamp="11:58 PM"
           profilePic="/images/user.svg"
           incoming={false}
         />
         <ChatBubble
-          message="Hi John, How are you? I need you help."
+          message="Hello"
+          timestamp="12:00 AM"
+          profilePic="/images/user.svg"
+          incoming={true}
+        />
+        <ChatBubble
+          message="Hi John, How are you? I need you help. 😥"
           timestamp="12:00 AM"
           profilePic="/images/user.svg"
           incoming={true}

@@ -14,7 +14,7 @@ export default function ChatBubble({ message, timestamp, profilePic, incoming })
           src={profilePic}
           width={44}
           height={44}
-          className="w-11 h-11 z-10 p-1.5 bg-[#f5f3f3] dark:bg-[#2B2B2B] rounded-full"
+          className="w-11 h-11 z-10 p-1.5 bg-[#DFDBDB] dark:bg-[#2B2B2B] rounded-full"
         />
         <div className="relative bg-[#5A4DE6] dark:bg-[#161616] w-fit px-1.5 py-1 rounded-md">
           <p className="text-sm mx-1">{message}</p>

@@ -3,8 +3,8 @@ import React from "react";
 
 export default function MessageInput() {
   return (
-    <form className="sticky z-50 bottom-0 right-0 flex items-center px-3 py-2 bg-white dark:bg-black">
-      <div className="bg-white dark:bg-[#2B2B2B] text-black dark:text-white flex items-center w-full px-3 py-2">
+    <form className="sticky z-50 bottom-0 right-0 flex items-center px-3 py-2 bg-white dark:bg-[#161616] border-l dark:border-gray-800">
+      <div className="bg-[#F5F3F3]  dark:bg-[#2B2B2B] text-black dark:text-white flex items-center w-full px-3 py-2">
         <input
           type="text"
           placeholder="Type your message..."
