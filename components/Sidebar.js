@@ -89,7 +89,7 @@ export default function Sidebar() {
             height={20}
             width={20}
             className={`invert ${
-              isActive(";rofile") ? "dark:invert-0" : ""
+              isActive("profile") ? "dark:invert-0" : ""
             } block w-5 h-5`}
           />
           <p className="font-poppins text-base">Proflie</p>
