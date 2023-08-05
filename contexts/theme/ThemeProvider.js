@@ -1,32 +1,41 @@
 "use client";
 
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import ThemeContext from "./ThemeContext";
 
 export default function ThemeProvider({ children }) {
+  const [isDark, setIsDark] = useState(false);
+
   const toggleTheme = () => {
     const isDark = localStorage.getItem("dark") === "true";
 
     if (isDark) {
       localStorage.setItem("dark", "false");
-      document.body.classList.remove("dark");
+      setIsDark(false);
     } else {
       localStorage.setItem("dark", "true");
-      document.body.classList.add("dark");
+      setIsDark(true);
     }
   };
 
   useEffect(() => {
     if (typeof window !== "undefined") {
-      const isDark = localStorage.getItem("dark") === "true";
-      if (isDark) {
-        document.body.classList.add("dark");
-      }
+      setIsDark(localStorage.getItem("dark") === "true");
     }
   }, []);
 
+  useEffect(() => {
+    if (typeof window !== "undefined") {
+      if (isDark) {
+        document.body.classList.add("dark");
+      } else {
+        document.body.classList.remove("dark");
+      }
+    }
+  }, [isDark]);
+
   return (
-    <ThemeContext.Provider value={{ toggleTheme }}>
+    <ThemeContext.Provider value={{ isDark, toggleTheme }}>
       {children}
     </ThemeContext.Provider>
   );
