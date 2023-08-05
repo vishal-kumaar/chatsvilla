@@ -43,7 +43,7 @@ export default function Sidebar() {
         <Link
           href="/"
           className={`flex items-center outline-none gap-x-4 ${
-            (isActive("") || isActive("chat"))
+            isActive("") || isActive("chat")
               ? "bg-[#4a48ad] dark:bg-[#fff] dark:text-black"
               : "hover:bg-[#7472ca] dark:hover:bg-[#535252]"
           } px-2.5 py-2 rounded-lg cursor-pointer`}>
@@ -53,7 +53,7 @@ export default function Sidebar() {
             height={20}
             width={20}
             className={`invert ${
-              (isActive("") || isActive("chat")) ? "dark:invert-0" : ""
+              isActive("") || isActive("chat") ? "dark:invert-0" : ""
             } block w-5 h-5`}
           />
           <p className="font-poppins text-base">Chat</p>
@@ -77,7 +77,7 @@ export default function Sidebar() {
           <p className="font-poppins text-base">Search</p>
         </Link>
         <Link
-          href="/profile"
+          href="/profile/johncena"
           className={`flex items-center outline-none gap-x-4 ${
             isActive("profile")
               ? "bg-[#4a48ad] dark:bg-[#fff] dark:text-black"
@@ -131,19 +131,19 @@ export default function Sidebar() {
           <p className="font-poppins text-base">Notification</p>
         </Link>
         <Link
-          href="/setting"
+          href="/settings"
           className={`flex items-center outline-none gap-x-4 ${
-            isActive("setting")
+            isActive("settings")
               ? "bg-[#4a48ad] dark:bg-[#fff] dark:text-black"
               : "hover:bg-[#7472ca] dark:hover:bg-[#535252]"
           } px-2.5 py-2 rounded-lg cursor-pointer`}>
           <Image
-            alt="setting"
+            alt="settings"
             src="/icons/setting.svg"
             height={20}
             width={20}
             className={`invert ${
-              isActive("setting") ? "dark:invert-0" : ""
+              isActive("settings") ? "dark:invert-0" : ""
             } block w-5 h-5`}
           />
           <p className="font-poppins text-base">Setting</p>
