@@ -78,7 +78,6 @@ export default function Settings() {
               version="1.1"
               x="0px"
               y="0px"
-              enable-background="new 0 0 100 100"
               viewBox="28.92 31.96 51.55 37.54"
               className="w-6 h-6 fill-none stroke-[#4e596b] dark:stroke-white stroke-[3]">
               <g>
