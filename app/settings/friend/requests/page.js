@@ -1,14 +1,17 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useContext } from "react";
 import Tab from "@/components/Tab";
 import Link from "next/link";
 import Image from "next/image";
 import Dropdown from "@/components/Dropdown";
 import { useSearchParams } from "next/navigation";
+import DropdownContext from "@/contexts/dropdown/DropdownContext";
 
 export default function FriendRequests() {
-  const [dropdown, setDropdown] = useState(false);
+  const { isDropdownOpen, toggleDropdown, closeDropdown } =
+    useContext(DropdownContext);
+
   const searchParams = useSearchParams();
   let tab = searchParams.get("tab");
 
@@ -27,10 +30,12 @@ export default function FriendRequests() {
     {
       name: "Remove Friend Request",
       icon: "/icons/unfriend.svg",
+      callback: () => {},
     },
     {
       name: "Block",
       icon: "/icons/block.svg",
+      callback: () => {},
     },
   ];
 
@@ -68,20 +73,18 @@ export default function FriendRequests() {
             <div
               className="relative"
               tabIndex={0}
-              onBlur={() => {
-                setTimeout(() => {
-                  setDropdown(false);
-                }, 500);
-              }}>
+              onBlur={() => closeDropdown("dropdown1")}>
               <Image
                 alt="options"
                 src="/icons/option.svg"
                 height={20}
                 width={20}
                 className="rounded-full w-5 h-5 cursor-pointer"
-                onClick={() => setDropdown(!dropdown)}
+                onClick={() => toggleDropdown("dropdown1")}
               />
-              {dropdown && <Dropdown options={dropdownOptions} />}
+              {isDropdownOpen("dropdown1") && (
+                <Dropdown options={dropdownOptions} />
+              )}
             </div>
           </div>
           <div className=" flex items-center text-black dark:text-white bg-white dark:bg-transparent hover:bg-[#dfdbdb] dark:hover:bg-[#555353] px-2.5 py-3 border-y">
@@ -108,20 +111,18 @@ export default function FriendRequests() {
             <div
               className="relative"
               tabIndex={0}
-              onBlur={() => {
-                setTimeout(() => {
-                  setDropdown(false);
-                }, 500);
-              }}>
+              onBlur={() => closeDropdown("dropdown2")}>
               <Image
                 alt="options"
                 src="/icons/option.svg"
                 height={20}
                 width={20}
                 className="rounded-full w-5 h-5 cursor-pointer"
-                onClick={() => setDropdown(!dropdown)}
+                onClick={() => toggleDropdown("dropdown2")}
               />
-              {dropdown && <Dropdown options={dropdownOptions} />}
+              {isDropdownOpen("dropdown2") && (
+                <Dropdown options={dropdownOptions} />
+              )}
             </div>
           </div>
         </div>
