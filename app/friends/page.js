@@ -22,12 +22,15 @@ export default function Friends() {
 
   return (
     <main className="w-full px-10 dark:bg-[#161616] pb-9">
-      <div className="sticky top-0 z-50 pt-10 bg-[#f5f3f3] dark:bg-[#161616] ">
+      <div className="sticky top-0 z-50 pt-10 bg-[#f5f3f3] dark:bg-[#161616] flex justify-between items-center gap-x-4">
         <h1 className="text-black dark:text-white font-signika text-3xl mb-1">
           Friends <span className="font-firasans text-xl">(0)</span>
         </h1>
-        <hr className="pb-8" />
+        <Link href="/friends/requests" className="text-[#5A4DE6] dark:text-white font-firasans">
+          Friend Requests
+        </Link>
       </div>
+      <hr className="pb-8" />
       {friends ? (
         <div>
           <div className="flex items-center text-black dark:text-white bg-white dark:bg-transparent hover:bg-[#dfdbdb] dark:hover:bg-[#555353] px-2.5 py-3 border-y">
