@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useContext } from "react";
+import React, { useContext, useEffect } from "react";
 import Tab from "@/components/Tab";
 import Link from "next/link";
 import Image from "next/image";
@@ -42,6 +42,10 @@ export default function FriendRequests() {
   if (!tab) {
     tab = "Friends Requests";
   }
+
+  useEffect(() => {
+    return closeDropdown();
+  }, []);
 
   return (
     <div className="w-full py-8 px-10">
@@ -154,7 +158,7 @@ export default function FriendRequests() {
               tabIndex={0}
               onBlur={() => {
                 setTimeout(() => {
-                  setDropdown(false);
+                  closeDropdown("dropdown3");
                 }, 500);
               }}>
               <Image
@@ -163,9 +167,11 @@ export default function FriendRequests() {
                 height={20}
                 width={20}
                 className="rounded-full w-5 h-5 cursor-pointer"
-                onClick={() => setDropdown(!dropdown)}
+                onClick={() => toggleDropdown("dropdown3")}
               />
-              {dropdown && <Dropdown options={dropdownOptions} />}
+              {isDropdownOpen("dropdown3") && (
+                <Dropdown options={dropdownOptions} />
+              )}
             </div>
           </div>
         </div>

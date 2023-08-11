@@ -70,7 +70,7 @@ export default function Settings() {
           </svg>
         </Link>
         <Link
-          href="/settings/friends/requests"
+          href="/settings/friend/requests"
           className="flex items-center justify-between shadow-md rounded-2xl px-4 py-1.5 my-4 bg-gray-100 dark:bg-black w-8/12 mx-auto">
           <div className="flex items-center gap-2.5">
             <svg
