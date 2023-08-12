@@ -3,9 +3,10 @@ import React from "react";
 import SearchBar from "./SearchBar";
 import Link from "next/link";
 
-export default function ChatList() {
+export default function ChatList({className}) {
   return (
-    <div className="sticky top-0 pl-4 sm:pl-8 pr-4 bg-white dark:bg-[#161616] text-black dark:text-white pt-6 md:pt-9 w-full md:w-96 min-h-[calc(100vh-40px)] md:h-screen shadow-2xl">
+    <div
+      className={`sticky top-0 pl-4 sm:pl-8 pr-4 bg-white dark:bg-[#161616] text-black dark:text-white pt-6 md:pt-9 w-full md:w-96 min-h-[calc(100vh-40px)] md:h-screen shadow-2xl ${className}`}>
       <h1 className="font-signika text-2xl mb-5">
         Chat <span className="font-firasans text-xl">(1)</span>
       </h1>

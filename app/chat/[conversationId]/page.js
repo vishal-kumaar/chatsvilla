@@ -5,7 +5,7 @@ import ChatList from "@/components/ChatList";
 export default function Converation() {
   return (
     <div className="flex w-full">
-      {/* <ChatList /> */}
+      <ChatList className="hidden md:block" />
       <Chat />
     </div>
   );

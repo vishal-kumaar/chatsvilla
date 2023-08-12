@@ -11,7 +11,7 @@ export default function Chat() {
 
   if (pathname === "/") {
     return (
-      <div className="w-full px-4 break-all font-xl font-poppins font-bold flex justify-center items-center text-black dark:text-white">
+      <div className="w-full px-4 break-all font-xl font-poppins font-bold hidden md:flex md:justify-center md:items-center text-black dark:text-white">
         Open any chat to start conversation.
       </div>
     );
