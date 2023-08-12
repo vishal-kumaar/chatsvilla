@@ -21,12 +21,12 @@ export default function Friends() {
   ];
 
   return (
-    <main className="w-full px-10 dark:bg-[#161616] pb-9">
-      <div className="sticky top-0 z-50 pt-10 bg-[#f5f3f3] dark:bg-[#161616] flex justify-between items-center gap-x-4">
-        <h1 className="text-black dark:text-white font-signika text-3xl mb-1">
+    <main className="w-full px-4 sm:px-10 dark:bg-[#161616] pb-9">
+      <div className="sticky top-0 z-30 pt-10 bg-[#f5f3f3] dark:bg-[#161616] flex flex-wrap justify-between items-center gap-x-4">
+        <h1 className="text-black dark:text-white font-signika text-2xl sm:text-3xl mb-1">
           Friends <span className="font-firasans text-xl">(0)</span>
         </h1>
-        <Link href="/friends/requests" className="text-[#5A4DE6] dark:text-white font-firasans">
+        <Link href="/friends/requests" className="text-[#5A4DE6] dark:text-white font-firasans text-sm sm:text-base">
           Friend Requests
         </Link>
       </div>
@@ -75,7 +75,7 @@ export default function Friends() {
           </div>
         </div>
       ) : (
-        <div className="flex flex-col gap-y-2 h-[76vh] justify-center items-center">
+        <div className="flex flex-col gap-y-2 h-[70vh] md:h-[76vh] justify-center items-center">
           <Image
             alt=""
             src="/icons/friends.svg"
@@ -83,7 +83,7 @@ export default function Friends() {
             height={40}
             className="w-10 h-10 invert-0 dark:invert"
           />
-          <p className="font-poppins text-black dark:text-white">
+          <p className="font-poppins text-black dark:text-white break-all text-sm sm:text-base">
             You don't have any friends.
           </p>
         </div>
