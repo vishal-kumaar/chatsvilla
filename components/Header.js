@@ -15,7 +15,7 @@ export default function Header() {
   }
 
   return (
-    <header className="z-40 bg-transparent text-black dark:text-white px-5 py-2 sticky top-0 left-0 w-full h-fit block md:hidden">
+    <header className="z-40 bg-transparent text-black dark:text-white px-5 py-2 w-full h-fit block md:hidden">
       <Image
         alt="menu"
         src="/icons/hamburger.svg"

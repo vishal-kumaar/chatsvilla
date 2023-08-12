@@ -21,8 +21,8 @@ export default function UpdateProfile() {
   };
 
   return (
-    <div className="w-full py-14 bg-[#f5f3f3] dark:bg-[#161616] flex flex-col gap-y-6 justify-center items-center rounded-r-xl">
-      <h1 className="font-signika font-bold text-3xl text-[#68647a] dark:text-white">
+    <div className="w-full py-14 px-4 sm:px-10 bg-[#f5f3f3] dark:bg-[#161616] flex flex-col gap-y-6 justify-center items-center rounded-r-xl">
+      <h1 className="font-signika font-bold text-2xl sm:text-3xl text-[#68647a] dark:text-white">
         Update Profile
       </h1>
       <div className="mb-5 relative w-fit">
@@ -59,7 +59,7 @@ export default function UpdateProfile() {
           </svg>
         </button>
       </div>
-      <form className="flex flex-col justify-center gap-y-4 w-7/12">
+      <form className="flex flex-col justify-center gap-y-4 w-full md:w-7/12">
         <div className="flex items-center gap-x-2 bg-[#E9E7FF] px-3.5 py-1.5 rounded-2xl shadow-md">
           <svg
             className="w-4 h-4 stroke-[#807c97] dark:stroke-[#161616]"
