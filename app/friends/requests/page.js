@@ -48,7 +48,7 @@ export default function FriendRequests() {
   }, []);
 
   return (
-    <div className="w-full py-8 px-10">
+    <div className="w-full py-8 px-4 sm:px-10">
       <Tab options={options} />
       <hr />
       {tab === "Friends Requests" ? (
