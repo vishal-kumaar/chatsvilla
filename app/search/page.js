@@ -11,10 +11,10 @@ export default function Search() {
   const query = searchParams.get("query");
 
   return (
-    <div className="w-full px-10 bg-white dark:bg-[#161616]">
+    <div className="w-full px-4 md:px-10 bg-white dark:bg-[#161616]">
       <div className="sticky top-0 pt-10 bg-white dark:bg-[#161616]">
         <SearchBar />
-        <h1 className="font-signika text-3xl mt-10 text-black dark:text-white">
+        <h1 className="font-signika text-2xl md:text-3xl mt-10 text-black dark:text-white">
           Search results
         </h1>
         <hr className="pb-5 mb-5 mt-2" />
@@ -44,7 +44,7 @@ export default function Search() {
           </Link>
         </div>
       ) : (
-        <div className="h-[60vh] flex items-center justify-center font-firasans text-lg">
+        <div className="h-[45vh] md:h-[60vh] flex items-center justify-center font-firasans text-lg">
           Search to see results here.
         </div>
       )}
