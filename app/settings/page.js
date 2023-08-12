@@ -9,7 +9,7 @@ export default function Settings() {
   const { isDark, toggleTheme } = useContext(ThemeContext);
 
   return (
-    <section className="w-full flex flex-col items-center p-9">
+    <section className="w-full flex flex-col items-center py-9 px-4 sm:px-9">
       <Image
         alt="user-profile"
         src="/images/user.svg"
@@ -23,10 +23,10 @@ export default function Settings() {
       <div className="text-lg font-firasans text-gray-500 dark:text-[#bdbbbb]">
         @official_johncena
       </div>
-      <div className="w-full mt-10 mx-8 font-poppins sm:mx-16 md:mx-24 lg:mx-36 xl:mx-56 2xl:mx-96 text-gray-700 dark:text-white">
+      <div className="w-full mt-10 font-poppins mx-0 md:mx-24 lg:mx-36 xl:mx-56 2xl:mx-96 text-gray-700 dark:text-white">
         <Link
           href="/settings/update/profile"
-          className="flex items-center justify-between shadow-md rounded-2xl px-4 py-1.5 my-4 bg-gray-100 dark:bg-black w-8/12 mx-auto">
+          className="flex items-center justify-between shadow-md rounded-2xl px-4 py-1.5 my-4 bg-gray-100 dark:bg-black w-full md:w-8/12 mx-auto">
           <div className="flex items-center gap-3">
             <svg
               className="w-5 h-5 stroke-[#4e596b] dark:stroke-white stroke-2"
@@ -48,7 +48,7 @@ export default function Settings() {
         </Link>
         <Link
           href="settings/update/password"
-          className="flex items-center justify-between shadow-md rounded-2xl px-4 py-1.5 my-4 bg-gray-100 dark:bg-black w-8/12 mx-auto">
+          className="flex items-center justify-between shadow-md rounded-2xl px-4 py-1.5 my-4 bg-gray-100 dark:bg-black w-full md:w-8/12 mx-auto">
           <div className="flex items-center gap-3">
             <svg
               className="h-5 w-5 fill-[#4e596b] dark:fill-white"
@@ -70,7 +70,7 @@ export default function Settings() {
           </svg>
         </Link>
         <button
-          className="flex items-center justify-between shadow-md rounded-2xl px-4 py-1.5 my-4 bg-gray-100 dark:bg-black w-8/12 mx-auto"
+          className="flex items-center justify-between shadow-md rounded-2xl px-4 py-1.5 my-4 bg-gray-100 dark:bg-black w-full md:w-8/12 mx-auto"
           onClick={toggleTheme}>
           <div className="flex items-center gap-2.5">
             {isDark ? (
