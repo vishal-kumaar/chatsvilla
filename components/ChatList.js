@@ -5,13 +5,15 @@ import Link from "next/link";
 
 export default function ChatList() {
   return (
-    <div className="sticky top-0 pl-8 pr-4 bg-white dark:bg-[#161616] text-black dark:text-white pt-9 w-96 h-screen shadow-2xl">
+    <div className="sticky top-0 pl-4 sm:pl-8 pr-4 bg-white dark:bg-[#161616] text-black dark:text-white pt-6 md:pt-9 w-full md:w-96 min-h-[calc(100vh-40px)] md:h-screen shadow-2xl">
       <h1 className="font-signika text-2xl mb-5">
         Chat <span className="font-firasans text-xl">(1)</span>
       </h1>
       <SearchBar />
-      <div className="mt-6 overflow-y-auto h-[calc(100vh-10.5rem)] pb-3">
-        <Link href="/chat/1" className="flex items-center gap-3 w-full border-y px-2.5 py-3 cursor-pointer text-white  bg-[#5a4de6] dark:bg-black hover:bg-[#dfdbdb] dark:hover:bg-[#555353]">
+      <div className="mt-6 overflow-hidden md:overflow-y-auto md:h-[calc(100vh-10.5rem)] pb-3">
+        <Link
+          href="/chat/1"
+          className="flex items-center gap-3 w-full border-y px-2.5 py-3 cursor-pointer text-white  bg-[#5a4de6] dark:bg-black hover:bg-[#dfdbdb] dark:hover:bg-[#555353]">
           <Image
             alt="profile-pic"
             src="/images/user.svg"
@@ -34,7 +36,9 @@ export default function ChatList() {
             </div>
           </div>
         </Link>
-        <Link href="/chat/2" className="flex items-center gap-3 w-full border-y px-2.5 py-3 cursor-pointer hover:bg-[#dfdbdb] dark:hover:bg-[#555353]">
+        <Link
+          href="/chat/2"
+          className="flex items-center gap-3 w-full border-y px-2.5 py-3 cursor-pointer hover:bg-[#dfdbdb] dark:hover:bg-[#555353]">
           <Image
             alt="profile-pic"
             src="/images/user.svg"

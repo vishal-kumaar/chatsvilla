@@ -17,7 +17,7 @@ export default function RootLayout({ children }) {
       <body className={fonts}>
         <Contexts>
           <Header />
-          <div className="flex w-full bg-[#f5f3f3] dark:bg-[#2B2B2B]">
+          <div className="block md:flex w-full bg-[#f5f3f3] dark:bg-[#2B2B2B]">
             <Sidebar />
             {children}
           </div>
