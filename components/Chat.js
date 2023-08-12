@@ -24,7 +24,7 @@ export default function Chat() {
   }, []);
 
   return (
-    <div className="w-full flex flex-col justify-between">
+    <div className="w-full min-h-screen md:min-h-full flex flex-col justify-between">
       <ChatHeader />
       <div className="flex-grow flex flex-col justify-end gap-y-3 px-2.5 py-3 font-poppins font-medium text-white bg-[#DFDBDB] dark:bg-[#2B2B2B]">
         <ChatBubble
