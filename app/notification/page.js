@@ -1,18 +1,18 @@
+import React from "react";
 import Image from "next/image";
 import Link from "next/link";
-import React from "react";
 
 export default function Notification() {
   const notification = "";
-  
+
   return (
-    <main className="w-full px-10 dark:bg-[#161616] pb-9">
+    <main className="w-full px-4 md:px-10 dark:bg-[#161616] pb-9">
       <div className="sticky top-0 pt-10 bg-[#f5f3f3] dark:bg-[#161616] ">
-        <div className="flex items-center justify-between gap-x-4">
-          <h1 className="text-black dark:text-white font-signika text-3xl mb-1">
+        <div className="flex flex-wrap items-center justify-between gap-x-4">
+          <h1 className="text-black dark:text-white font-signika text-2xl sm:text-3xl mb-1">
             Notifications <span className="font-firasans text-xl">(0)</span>
           </h1>
-          <button className="text-[#5A4DE6] dark:text-white font-firasans">
+          <button className="text-[#5A4DE6] dark:text-white font-firasans text-sm text-right sm:text-base">
             Mark all as read
           </button>
         </div>
@@ -81,7 +81,9 @@ export default function Notification() {
             height={40}
             className="w-10 h-10 invert-0 dark:invert"
           />
-          <p className="font-poppins text-black dark:text-white">You don't have any notification.</p>
+          <p className="font-poppins text-black dark:text-white break-all">
+            You don't have any notification.
+          </p>
         </div>
       )}
     </main>
