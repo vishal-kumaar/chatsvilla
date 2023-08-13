@@ -86,7 +86,7 @@ export default function Signup() {
                   Female
                 </option>
                 <option value="Unknown" className="text-black">
-                  Don't want to specify
+                  Don{"\u0027"}t want to specify
                 </option>
               </select>
             </div>

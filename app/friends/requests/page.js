@@ -45,7 +45,9 @@ export default function FriendRequests() {
 
   useEffect(() => {
     return closeDropdown();
-  }, []);
+  }, 
+  //eslint-disable-next-line
+  []);
 
   return (
     <div className="w-full py-8 px-4 sm:px-10">

@@ -82,7 +82,7 @@ export default function Notification() {
             className="w-10 h-10 invert-0 dark:invert"
           />
           <p className="font-poppins text-black dark:text-white break-all">
-            You don't have any notification.
+            You don{"\u0027"}t have any notification.
           </p>
         </div>
       )}

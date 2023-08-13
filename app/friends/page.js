@@ -84,7 +84,7 @@ export default function Friends() {
             className="w-10 h-10 invert-0 dark:invert"
           />
           <p className="font-poppins text-black dark:text-white break-all text-sm sm:text-base">
-            You don't have any friends.
+            You don{"\u0027"}t have any friends.
           </p>
         </div>
       )}

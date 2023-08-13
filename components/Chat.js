@@ -9,6 +9,14 @@ import ChatBubble from "./ChatBubble";
 export default function Chat() {
   const pathname = usePathname();
 
+  useEffect(() => {
+    if (typeof window !== "undefined") {
+      window.scrollBy(0, window.innerHeight);
+    }
+  },
+  //eslint-disable-next-line
+  []);
+
   if (pathname === "/") {
     return (
       <div className="w-full px-4 break-all font-xl font-poppins font-bold hidden md:flex md:justify-center md:items-center text-black dark:text-white">
@@ -16,12 +24,6 @@ export default function Chat() {
       </div>
     );
   }
-
-  useEffect(() => {
-    if (typeof window !== "undefined") {
-      window.scrollBy(0, window.innerHeight);
-    }
-  }, []);
 
   return (
     <div className="w-full min-h-screen md:min-h-full flex flex-col justify-between">
