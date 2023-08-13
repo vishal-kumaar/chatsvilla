@@ -6,9 +6,9 @@ import React, { useState } from "react";
 export default function Login() {
   const [passowrdType, setPasswordType] = useState("password");
   return (
-    <main className="w-full py-20 min-h-screen bg-gradient-to-r from-[#5a4de6] via-[#7d59c5] to-[#a78bf6] dark:from-transparent dark:via-transparent dark:to-transparent">
-      <div className="flex shadow-2xl w-10/12 mx-auto h-[30rem]">
-        <div className="text-white bg-gradient-to-r from-[#7c70ff] via-[#695cf8] to-[#BC6EC9] dark:from-[#030303] dark:via-[#1f1e1e] dark:to-[#1f1e1e] w-7/12 px-10 pt-32 rounded-l-xl">
+    <main className="w-full py-20 px-4 sm:px-10 min-h-screen bg-gradient-to-r from-[#5a4de6] via-[#7d59c5] to-[#a78bf6] dark:from-transparent dark:via-transparent dark:to-transparent">
+      <div className="flex shadow-2xl w-full sm:w-10/12 mx-auto h-[30rem]">
+        <div className="text-white bg-gradient-to-r from-[#7c70ff] via-[#695cf8] to-[#BC6EC9] dark:from-[#030303] dark:via-[#1f1e1e] dark:to-[#1f1e1e] w-7/12 px-10 pt-32 rounded-l-xl hidden lg:block">
           <h1 className="font-signika text-5xl">Welcome to chatsvilla</h1>
           <p className="font-poppins mt-2 max-w-2xl">
             Connect with friends, family, and colleagues effortlessly, share
@@ -18,7 +18,7 @@ export default function Login() {
             future of chat applications with Chatsvilla
           </p>
         </div>
-        <div className="w-5/12 bg-white dark:bg-[#161616] flex flex-col gap-y-6 justify-center items-center h-[30rem] rounded-r-xl">
+        <div className="w-full lg:w-5/12 bg-white dark:bg-[#161616] flex flex-col gap-y-6 justify-center items-center h-[30rem] rounded-r-xl">
           <h1 className="font-poppins font-bold text-lg text-[#68647a] dark:text-white">
             USER LOGIN
           </h1>
