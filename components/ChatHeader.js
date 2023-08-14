@@ -1,20 +1,22 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useContext, useEffect } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import Dropdown from "./Dropdown";
 import { useRouter } from "next/navigation";
+import DropdownContext from "@/contexts/dropdown/DropdownContext";
 
 export default function ChatHeader() {
-  const [dropdown, setDropdown] = useState(false);
+  const { isDropdownOpen, toggleDropdown, closeDropdown, removeDropdown } =
+    useContext(DropdownContext);
   const router = useRouter();
 
   const dropdownOptions = [
     {
       name: "View Profile",
       icon: "/icons/profile.svg",
-      link: "/profile/1",
+      callback: () => router.push("/profile/1"),
     },
     {
       name: "Delete Chat",
@@ -25,6 +27,14 @@ export default function ChatHeader() {
       icon: "/icons/block.svg",
     },
   ];
+
+  useEffect(
+    () => {
+      return removeDropdown();
+    },
+    //eslint-disable-next-line
+    []
+  );
 
   return (
     <header className="z-40 flex justify-between items-center sticky top-0 right-0 px-7 py-2 shadow-2xl bg-[#5a4de6] dark:bg-black text-white">
@@ -56,20 +66,16 @@ export default function ChatHeader() {
       <div
         className="relative"
         tabIndex={0}
-        onBlur={() => {
-          setTimeout(() => {
-            setDropdown(false);
-          }, 500);
-        }}>
+        onBlur={() => closeDropdown("dropdown")}>
         <Image
           alt="option"
           src="/icons/option.svg"
           width={20}
           height={20}
           className="w-5 h-5 invert cursor-pointer"
-          onClick={() => setDropdown(!dropdown)}
+          onClick={() => toggleDropdown("dropdown")}
         />
-        {dropdown && <Dropdown options={dropdownOptions} />}
+        {isDropdownOpen("dropdown") && <Dropdown options={dropdownOptions} />}
       </div>
     </header>
   );

@@ -10,7 +10,7 @@ import DropdownContext from "@/contexts/dropdown/DropdownContext";
 import Header from "@/components/Header";
 
 export default function FriendRequests() {
-  const { isDropdownOpen, toggleDropdown, closeDropdown } =
+  const { isDropdownOpen, toggleDropdown, closeDropdown, removeDropdown } =
     useContext(DropdownContext);
 
   const searchParams = useSearchParams();
@@ -46,7 +46,7 @@ export default function FriendRequests() {
 
   useEffect(
     () => {
-      return closeDropdown();
+      return removeDropdown();
     },
     //eslint-disable-next-line
     []
