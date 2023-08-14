@@ -1,13 +1,15 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useContext, useEffect } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import Dropdown from "@/components/Dropdown";
 import Header from "@/components/Header";
+import DropdownContext from "@/contexts/dropdown/DropdownContext";
 
 export default function Friends() {
-  const [dropdown, setDropdown] = useState(false);
+  const { isDropdownOpen, toggleDropdown, closeDropdown, removeDropdown } =
+    useContext(DropdownContext);
   const friends = "";
 
   const dropdownOptions = [
@@ -21,14 +23,24 @@ export default function Friends() {
     },
   ];
 
+  useEffect(
+    () => {
+      return removeDropdown();
+    },
+    //eslint-disable-next-line
+    []
+  );
+
   return (
     <main className="w-full px-4 sm:px-10 dark:bg-[#161616] pb-9">
-    <Header className="px-1" />
+      <Header className="px-1" />
       <div className="sticky top-0 z-30 pt-6 md:pt-10 bg-[#f5f3f3] dark:bg-[#161616] flex flex-wrap justify-between items-center gap-x-4">
         <h1 className="text-black dark:text-white font-signika text-2xl sm:text-3xl mb-1">
           Friends <span className="font-firasans text-xl">(0)</span>
         </h1>
-        <Link href="/friends/requests" className="text-[#5A4DE6] dark:text-white font-firasans text-sm sm:text-base">
+        <Link
+          href="/friends/requests"
+          className="text-[#5A4DE6] dark:text-white font-firasans text-sm sm:text-base">
           Friend Requests
         </Link>
       </div>
@@ -59,25 +71,23 @@ export default function Friends() {
             <div
               className="relative"
               tabIndex={0}
-              onBlur={() => {
-                setTimeout(() => {
-                  setDropdown(false);
-                }, 500);
-              }}>
+              onBlur={() => closeDropdown("dropdown1")}>
               <Image
                 alt="options"
                 src="/icons/option.svg"
                 height={20}
                 width={20}
-                className="rounded-full w-5 h-5 cursor-pointer"
-                onClick={() => setDropdown(!dropdown)}
+                className="rounded-full w-5 h-5 cursor-pointer invert-0 dark:invert"
+                onClick={() => toggleDropdown("dropdown1")}
               />
-              {dropdown && <Dropdown options={dropdownOptions} />}
+              {isDropdownOpen("dropdown1") && (
+                <Dropdown options={dropdownOptions} />
+              )}
             </div>
           </div>
         </div>
       ) : (
-        <div className="flex flex-col gap-y-2 h-[calc(100vh-185px)] md:h-full justify-center items-center">
+        <div className="flex flex-col gap-y-2 h-[calc(100vh-185px)] justify-center items-center">
           <Image
             alt=""
             src="/icons/friends.svg"
