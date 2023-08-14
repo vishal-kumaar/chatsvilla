@@ -7,6 +7,7 @@ import Image from "next/image";
 import Dropdown from "@/components/Dropdown";
 import { useSearchParams } from "next/navigation";
 import DropdownContext from "@/contexts/dropdown/DropdownContext";
+import Header from "@/components/Header";
 
 export default function FriendRequests() {
   const { isDropdownOpen, toggleDropdown, closeDropdown } =
@@ -43,141 +44,151 @@ export default function FriendRequests() {
     tab = "Friends Requests";
   }
 
-  useEffect(() => {
-    return closeDropdown();
-  }, 
-  //eslint-disable-next-line
-  []);
+  useEffect(
+    () => {
+      return closeDropdown();
+    },
+    //eslint-disable-next-line
+    []
+  );
 
   return (
-    <div className="w-full py-8 px-4 sm:px-10">
+    <div className="w-full min-h-screen">
+      <Header className="px-5" />
       <Tab options={options} />
-      <hr />
-      {tab === "Friends Requests" ? (
-        <div className="mt-7">
-          <div className=" flex items-center text-black dark:text-white bg-white dark:bg-transparent hover:bg-[#dfdbdb] dark:hover:bg-[#555353] px-2.5 py-3 border-y">
-            <Link
-              href="/profile/1"
-              className="flex items-center gap-x-4 w-full cursor-pointer">
-              <Image
-                alt="profile-pic"
-                src="/images/user.svg"
-                height={48}
-                width={48}
-                className="rounded-full w-12 h-12"
-              />
-              <div className="w-full">
-                <h2 className="font-signika text-sm line-clamp-1">John Cena</h2>
-                <p className="font-poppins text-xs line-clamp-1 break-all max-w-full">
-                  <span className="mr-4">offical_johncena</span>
-                  <span className="relative before:absolute before:top-1.5 before:-left-2.5 before:h-1 before:w-1 before:bg-[#555353] dark:before:bg-white before:rounded-full">
-                    johncena@gmail.com
-                  </span>
-                </p>
+      <div className="py-8 px-4 sm:px-10">
+        {tab === "Friends Requests" ? (
+          <div className="mt-7">
+            <div className=" flex items-center text-black dark:text-white bg-white dark:bg-transparent hover:bg-[#dfdbdb] dark:hover:bg-[#555353] px-2.5 py-3 border-y">
+              <Link
+                href="/profile/1"
+                className="flex items-center gap-x-4 w-full cursor-pointer">
+                <Image
+                  alt="profile-pic"
+                  src="/images/user.svg"
+                  height={48}
+                  width={48}
+                  className="rounded-full w-12 h-12"
+                />
+                <div className="w-full">
+                  <h2 className="font-signika text-sm line-clamp-1">
+                    John Cena
+                  </h2>
+                  <p className="font-poppins text-xs line-clamp-1 break-all max-w-full">
+                    <span className="mr-4">offical_johncena</span>
+                    <span className="relative before:absolute before:top-1.5 before:-left-2.5 before:h-1 before:w-1 before:bg-[#555353] dark:before:bg-white before:rounded-full">
+                      johncena@gmail.com
+                    </span>
+                  </p>
+                </div>
+              </Link>
+              <div
+                className="relative"
+                tabIndex={0}
+                onBlur={() => closeDropdown("dropdown1")}>
+                <Image
+                  alt="options"
+                  src="/icons/option.svg"
+                  height={20}
+                  width={20}
+                  className="rounded-full w-5 h-5 cursor-pointer invert-0 dark:invert"
+                  onClick={() => toggleDropdown("dropdown1")}
+                />
+                {isDropdownOpen("dropdown1") && (
+                  <Dropdown options={dropdownOptions} />
+                )}
               </div>
-            </Link>
-            <div
-              className="relative"
-              tabIndex={0}
-              onBlur={() => closeDropdown("dropdown1")}>
-              <Image
-                alt="options"
-                src="/icons/option.svg"
-                height={20}
-                width={20}
-                className="rounded-full w-5 h-5 cursor-pointer"
-                onClick={() => toggleDropdown("dropdown1")}
-              />
-              {isDropdownOpen("dropdown1") && (
-                <Dropdown options={dropdownOptions} />
-              )}
+            </div>
+            <div className=" flex items-center text-black dark:text-white bg-white dark:bg-transparent hover:bg-[#dfdbdb] dark:hover:bg-[#555353] px-2.5 py-3 border-y">
+              <Link
+                href="/profile/1"
+                className="flex items-center gap-x-4 w-full cursor-pointer">
+                <Image
+                  alt="profile-pic"
+                  src="/images/user.svg"
+                  height={48}
+                  width={48}
+                  className="rounded-full w-12 h-12"
+                />
+                <div className="w-full">
+                  <h2 className="font-signika text-sm line-clamp-1">
+                    John Cena
+                  </h2>
+                  <p className="font-poppins text-xs line-clamp-1 break-all max-w-full">
+                    <span className="mr-4">offical_johncena</span>
+                    <span className="relative before:absolute before:top-1.5 before:-left-2.5 before:h-1 before:w-1 before:bg-[#555353] dark:before:bg-white before:rounded-full">
+                      johncena@gmail.com
+                    </span>
+                  </p>
+                </div>
+              </Link>
+              <div
+                className="relative"
+                tabIndex={0}
+                onBlur={() => closeDropdown("dropdown2")}>
+                <Image
+                  alt="options"
+                  src="/icons/option.svg"
+                  height={20}
+                  width={20}
+                  className="rounded-full w-5 h-5 cursor-pointer invert-0 dark:invert"
+                  onClick={() => toggleDropdown("dropdown2")}
+                />
+                {isDropdownOpen("dropdown2") && (
+                  <Dropdown options={dropdownOptions} />
+                )}
+              </div>
             </div>
           </div>
-          <div className=" flex items-center text-black dark:text-white bg-white dark:bg-transparent hover:bg-[#dfdbdb] dark:hover:bg-[#555353] px-2.5 py-3 border-y">
-            <Link
-              href="/profile/1"
-              className="flex items-center gap-x-4 w-full cursor-pointer">
-              <Image
-                alt="profile-pic"
-                src="/images/user.svg"
-                height={48}
-                width={48}
-                className="rounded-full w-12 h-12"
-              />
-              <div className="w-full">
-                <h2 className="font-signika text-sm line-clamp-1">John Cena</h2>
-                <p className="font-poppins text-xs line-clamp-1 break-all max-w-full">
-                  <span className="mr-4">offical_johncena</span>
-                  <span className="relative before:absolute before:top-1.5 before:-left-2.5 before:h-1 before:w-1 before:bg-[#555353] dark:before:bg-white before:rounded-full">
-                    johncena@gmail.com
-                  </span>
-                </p>
+        ) : (
+          <div className="mt-7">
+            <div className=" flex items-center text-black dark:text-white bg-white dark:bg-transparent hover:bg-[#dfdbdb] dark:hover:bg-[#555353] px-2.5 py-3 border-y">
+              <Link
+                href="/profile/1"
+                className="flex items-center gap-x-4 w-full cursor-pointer">
+                <Image
+                  alt="profile-pic"
+                  src="/images/user.svg"
+                  height={48}
+                  width={48}
+                  className="rounded-full w-12 h-12"
+                />
+                <div className="w-full">
+                  <h2 className="font-signika text-sm line-clamp-1">
+                    John Cena
+                  </h2>
+                  <p className="font-poppins text-xs line-clamp-1 break-all max-w-full">
+                    <span className="mr-4">offical_johncena</span>
+                    <span className="relative before:absolute before:top-1.5 before:-left-2.5 before:h-1 before:w-1 before:bg-[#555353] dark:before:bg-white before:rounded-full">
+                      johncena@gmail.com
+                    </span>
+                  </p>
+                </div>
+              </Link>
+              <div
+                className="relative"
+                tabIndex={0}
+                onBlur={() => {
+                  setTimeout(() => {
+                    closeDropdown("dropdown3");
+                  }, 500);
+                }}>
+                <Image
+                  alt="options"
+                  src="/icons/option.svg"
+                  height={20}
+                  width={20}
+                  className="rounded-full w-5 h-5 cursor-pointer"
+                  onClick={() => toggleDropdown("dropdown3")}
+                />
+                {isDropdownOpen("dropdown3") && (
+                  <Dropdown options={dropdownOptions} />
+                )}
               </div>
-            </Link>
-            <div
-              className="relative"
-              tabIndex={0}
-              onBlur={() => closeDropdown("dropdown2")}>
-              <Image
-                alt="options"
-                src="/icons/option.svg"
-                height={20}
-                width={20}
-                className="rounded-full w-5 h-5 cursor-pointer"
-                onClick={() => toggleDropdown("dropdown2")}
-              />
-              {isDropdownOpen("dropdown2") && (
-                <Dropdown options={dropdownOptions} />
-              )}
             </div>
           </div>
-        </div>
-      ) : (
-        <div className="mt-7">
-          <div className=" flex items-center text-black dark:text-white bg-white dark:bg-transparent hover:bg-[#dfdbdb] dark:hover:bg-[#555353] px-2.5 py-3 border-y">
-            <Link
-              href="/profile/1"
-              className="flex items-center gap-x-4 w-full cursor-pointer">
-              <Image
-                alt="profile-pic"
-                src="/images/user.svg"
-                height={48}
-                width={48}
-                className="rounded-full w-12 h-12"
-              />
-              <div className="w-full">
-                <h2 className="font-signika text-sm line-clamp-1">John Cena</h2>
-                <p className="font-poppins text-xs line-clamp-1 break-all max-w-full">
-                  <span className="mr-4">offical_johncena</span>
-                  <span className="relative before:absolute before:top-1.5 before:-left-2.5 before:h-1 before:w-1 before:bg-[#555353] dark:before:bg-white before:rounded-full">
-                    johncena@gmail.com
-                  </span>
-                </p>
-              </div>
-            </Link>
-            <div
-              className="relative"
-              tabIndex={0}
-              onBlur={() => {
-                setTimeout(() => {
-                  closeDropdown("dropdown3");
-                }, 500);
-              }}>
-              <Image
-                alt="options"
-                src="/icons/option.svg"
-                height={20}
-                width={20}
-                className="rounded-full w-5 h-5 cursor-pointer"
-                onClick={() => toggleDropdown("dropdown3")}
-              />
-              {isDropdownOpen("dropdown3") && (
-                <Dropdown options={dropdownOptions} />
-              )}
-            </div>
-          </div>
-        </div>
-      )}
+        )}
+      </div>
     </div>
   );
 }

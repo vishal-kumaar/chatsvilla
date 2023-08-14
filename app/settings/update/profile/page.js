@@ -21,7 +21,7 @@ export default function UpdateProfile() {
   };
 
   return (
-    <div className="w-full py-14 px-4 sm:px-10 bg-[#f5f3f3] dark:bg-[#161616] flex flex-col gap-y-6 justify-center items-center rounded-r-xl">
+    <div className="w-full min-h-screen py-14 px-4 sm:px-10 bg-[#f5f3f3] dark:bg-[#161616] flex flex-col gap-y-6 justify-center items-center rounded-r-xl">
       <h1 className="font-signika font-bold text-2xl sm:text-3xl text-[#68647a] dark:text-white">
         Update Profile
       </h1>
@@ -129,13 +129,13 @@ export default function UpdateProfile() {
         <div className="mt-3 flex items-center gap-4 justify-center">
           <button
             type="submit"
-            className="bg-gradient-to-r from-[#D570BC] to-[#8B6CE2] hover:from-[#aa6198] hover:to-[#8f72dd] dark:from-[#3b3a3a] dark:to-[#000] dark:hover:from-[#1f1e1e] dark:hover:to-[#131212] text-white py-1 w-24 rounded-2xl text-sm shadow-md">
+            className="bg-gradient-to-r from-[#D570BC] to-[#8B6CE2] hover:from-[#aa6198] hover:to-[#8f72dd] dark:from-[#3b3a3a] dark:to-[#000] dark:hover:from-[#1f1e1e] dark:hover:to-[#131212] text-white py-1 w-24 rounded-2xl text-sm shadow-md font-roboto">
             Save
           </button>
           <button
             type="button"
             onClick={() => router.back()}
-            className="bg-gradient-to-r from-[#D570BC] to-[#8B6CE2] hover:from-[#aa6198] hover:to-[#8f72dd] dark:from-[#3b3a3a] dark:to-[#000] dark:hover:from-[#1f1e1e] dark:hover:to-[#131212] text-white py-1 w-24 rounded-2xl text-sm shadow-md">
+            className="bg-gradient-to-r from-[#D570BC] to-[#8B6CE2] hover:from-[#aa6198] hover:to-[#8f72dd] dark:from-[#3b3a3a] dark:to-[#000] dark:hover:from-[#1f1e1e] dark:hover:to-[#131212] text-white py-1 w-24 rounded-2xl text-sm shadow-md font-roboto">
             Cancal
           </button>
         </div>

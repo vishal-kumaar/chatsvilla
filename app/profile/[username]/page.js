@@ -1,10 +1,12 @@
 import React from "react";
 import Image from "next/image";
 import Link from "next/link";
+import Header from "@/components/Header";
 
 export default function Profile() {
   return (
-    <div className="w-full py-16 px-4 sm:px-10 overflow-x-hidden text-black dark:text-white">
+    <div className="w-full min-h-screen md:pt-14 pb-4 px-4 sm:px-10 overflow-x-hidden bg-white dark:bg-[#161616] text-black dark:text-white">
+      <Header className="px-1" />
       <main className="flex flex-col sm:flex-row items-center sm:items-start justify-center sm:justify-between gap-8 max-w-4xl mx-auto">
         <Image
           alt="profile-pic"
@@ -16,18 +18,24 @@ export default function Profile() {
         <div>
           <div className="flex items-center justify-between gap-x-4">
             <h1 className="font-signika text-xl sm:text-2xl">John Cena</h1>
-            <button className="bg-gradient-to-r from-[#D570BC] to-[#8B6CE2] hover:from-[#aa6198] hover:to-[#8f72dd] dark:from-[#3b3a3a] dark:to-[#000] dark:hover:from-[#1f1e1e] dark:hover:to-[#131212] text-white w-fit px-3 sm:px-5 py-1 rounded-2xl text-xs sm:text-sm">
+            <button className="bg-gradient-to-r from-[#D570BC] to-[#8B6CE2] hover:from-[#aa6198] hover:to-[#8f72dd] dark:from-[#3b3a3a] dark:to-[#000] dark:hover:from-[#1f1e1e] dark:hover:to-[#131212] text-white w-fit px-3 sm:px-5 py-1 rounded-2xl text-xs sm:text-sm font-roboto">
               Send Request
             </button>
           </div>
-          <p className="font-poppins text-sm sm:text-base">@official_johncena</p>
+          <p className="font-poppins text-sm sm:text-base">
+            @official_johncena
+          </p>
           <p className="font-poppins text-xs sm:text-sm mt-2">Male</p>
-          <p className="font-poppins text-xs sm:text-sm mt-px">johncena@gmail.com</p>
+          <p className="font-poppins text-xs sm:text-sm mt-px">
+            johncena@gmail.com
+          </p>
           <p className="font-poppins text-xs sm:text-sm mt-px">
             An American professional wrestler, actor, and former rapper
             currently signed to WWE.
           </p>
-          <p className="font-poppins text-xs sm:text-sm mt-px">3 Mutual Friends</p>
+          <p className="font-poppins text-xs sm:text-sm mt-1">
+            3 Mutual Friends
+          </p>
         </div>
       </main>
       <hr className="my-5 sm:my-10" />
@@ -39,7 +47,7 @@ export default function Profile() {
         <div className="flex flex-nowrap overflow-x-auto gap-x-3 pb-5">
           <Link
             href="/profile/1"
-            className="flex-auto basis-0 grow-0 border cursor-pointer flex flex-col justify-center items-center border-black/20 shadow-xl rounded-lg max-w-[9.8rem]">
+            className="flex-auto basis-0 grow-0 border cursor-pointer flex flex-col justify-center items-center border-black/20 shadow-xl rounded-lg max-w-[9.8rem] bg-white dark:bg-[#2B2B2B]">
             <Image
               height={96}
               width={96}

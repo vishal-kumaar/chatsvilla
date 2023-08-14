@@ -3,19 +3,13 @@
 import React, { useContext } from "react";
 import Image from "next/image";
 import SidebarContext from "@/contexts/sidebar/SidebarContext";
-import { usePathname } from "next/navigation";
 
-export default function Header() {
+export default function Header({ className }) {
   const { toggleSidebar } = useContext(SidebarContext);
-  const pathname = usePathname();
-  const hideHeaderRoute = /\/chat\/(.+)$/;
-
-  if (pathname.match(hideHeaderRoute)) {
-    return null;
-  }
 
   return (
-    <header className="z-40 bg-transparent text-black dark:text-white px-5 py-2 w-full h-fit block md:hidden">
+    <header
+      className={`w-full h-14 flex items-center md:hidden ${className}`}>
       <Image
         alt="menu"
         src="/icons/hamburger.svg"

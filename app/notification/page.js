@@ -1,12 +1,14 @@
 import React from "react";
 import Image from "next/image";
 import Link from "next/link";
+import Header from "@/components/Header";
 
 export default function Notification() {
   const notification = "";
 
   return (
     <main className="w-full px-4 md:px-10 dark:bg-[#161616] pb-9">
+      <Header className="px-1" />
       <div className="sticky top-0 pt-10 bg-[#f5f3f3] dark:bg-[#161616] ">
         <div className="flex flex-wrap items-center justify-between gap-x-4">
           <h1 className="text-black dark:text-white font-signika text-2xl sm:text-3xl mb-1">
@@ -19,7 +21,7 @@ export default function Notification() {
         <hr className="pb-8" />
       </div>
       {notification ? (
-        <div className="flex flex-col gap-y-3">
+        <div className="flex flex-col gap-y-3 min-h-[calc(100vh-201px)]">
           <Link
             href=""
             className="flex items-center gap-x-4 w-full border-l-4 border-[#5A4DE6] dark:border-white shadow-md px-2.5 py-3 cursor-pointer text-black dark:text-white bg-white dark:bg-[#2B2B2B] hover:bg-[#dfdbdb] dark:hover:bg-[#555353]">
@@ -73,7 +75,7 @@ export default function Notification() {
           </Link>
         </div>
       ) : (
-        <div className="flex flex-col gap-y-2 h-[76vh] justify-center items-center">
+        <div className="flex flex-col gap-y-2 h-[calc(100vh-201px)] justify-center items-center">
           <Image
             alt=""
             src="/icons/notification.svg"

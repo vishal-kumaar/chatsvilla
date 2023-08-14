@@ -4,6 +4,7 @@ import React, { useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import Dropdown from "@/components/Dropdown";
+import Header from "@/components/Header";
 
 export default function Friends() {
   const [dropdown, setDropdown] = useState(false);
@@ -22,7 +23,8 @@ export default function Friends() {
 
   return (
     <main className="w-full px-4 sm:px-10 dark:bg-[#161616] pb-9">
-      <div className="sticky top-0 z-30 pt-10 bg-[#f5f3f3] dark:bg-[#161616] flex flex-wrap justify-between items-center gap-x-4">
+    <Header className="px-1" />
+      <div className="sticky top-0 z-30 pt-6 md:pt-10 bg-[#f5f3f3] dark:bg-[#161616] flex flex-wrap justify-between items-center gap-x-4">
         <h1 className="text-black dark:text-white font-signika text-2xl sm:text-3xl mb-1">
           Friends <span className="font-firasans text-xl">(0)</span>
         </h1>
@@ -32,7 +34,7 @@ export default function Friends() {
       </div>
       <hr className="pb-8" />
       {friends ? (
-        <div>
+        <div className="min-h-[calc(100vh-185px)]">
           <div className="flex items-center text-black dark:text-white bg-white dark:bg-transparent hover:bg-[#dfdbdb] dark:hover:bg-[#555353] px-2.5 py-3 border-y">
             <Link
               href="/profile/1"
@@ -75,7 +77,7 @@ export default function Friends() {
           </div>
         </div>
       ) : (
-        <div className="flex flex-col gap-y-2 h-[70vh] md:h-[76vh] justify-center items-center">
+        <div className="flex flex-col gap-y-2 h-[calc(100vh-185px)] md:h-full justify-center items-center">
           <Image
             alt=""
             src="/icons/friends.svg"

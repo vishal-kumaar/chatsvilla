@@ -5,7 +5,7 @@ import Link from "next/link";
 
 export default function Signup() {
   return (
-    <main className="w-full py-20 px-4 sm:px-10 min-h-screen bg-gradient-to-r from-[#5a4de6] via-[#7d59c5] to-[#a78bf6] dark:from-transparent dark:via-transparent dark:to-transparent">
+    <main className="w-full flex py-10 px-4 sm:px-10 min-h-screen bg-gradient-to-r from-[#5a4de6] via-[#7d59c5] to-[#a78bf6] dark:from-transparent dark:via-transparent dark:to-transparent">
       <div className="flex shadow-2xl w-full sm:w-10/12 mx-auto h-[30rem]">
         <div className="text-white bg-gradient-to-r from-[#7c70ff] via-[#695cf8] to-[#BC6EC9] dark:from-[#030303] dark:via-[#1f1e1e] dark:to-[#1f1e1e] w-7/12 px-10 pt-32 rounded-l-xl hidden lg:block">
           <h1 className="font-signika text-5xl">Welcome to chatsvilla</h1>
@@ -106,7 +106,7 @@ export default function Signup() {
             </div>
             <button
               type="submit"
-              className="bg-gradient-to-r from-[#D570BC] to-[#8B6CE2] hover:from-[#aa6198] hover:to-[#8f72dd] dark:from-[#3b3a3a] dark:to-[#000] dark:hover:from-[#1f1e1e] dark:hover:to-[#131212] text-white w-fit px-7 py-1 rounded-2xl text-sm mx-auto mt-2">
+              className="bg-gradient-to-r from-[#D570BC] to-[#8B6CE2] hover:from-[#aa6198] hover:to-[#8f72dd] dark:from-[#3b3a3a] dark:to-[#000] dark:hover:from-[#1f1e1e] dark:hover:to-[#131212] text-white w-fit px-7 py-1 rounded-2xl text-sm mx-auto mt-2 font-roboto">
               SIGNUP
             </button>
           </form>
