@@ -1,14 +1,53 @@
-import Image from "next/image";
-import React from "react";
+"use client";
 
-export default function ChatBubble({ message, timestamp, profilePic, incoming }) {
+import React, { useContext, useEffect } from "react";
+import DropdownContext from "@/contexts/dropdown/DropdownContext";
+import Image from "next/image";
+import Dropdown from "./Dropdown";
+
+export default function ChatBubble({
+  id,
+  message,
+  timestamp,
+  profilePic,
+  incoming,
+}) {
+  const { isDropdownOpen, toggleDropdown, closeDropdown, removeDropdown } =
+    useContext(DropdownContext);
+
+  const dropdownOptions = [
+    {
+      name: "Copy",
+      icon: "/icons/block.svg",
+    },
+    {
+      name: "Edit",
+      icon: "/icons/profile.svg",
+    },
+    {
+      name: "Delete",
+      icon: "/icons/trash.svg",
+    },
+  ];
+
+  useEffect(
+    () => {
+      return removeDropdown();
+    },
+    //eslint-disable-next-line
+    []
+  );
+
   return (
     <div
       className={`flex ${incoming ? "justify-start" : "justify-end"} w-full`}>
       <div
-        className={`flex ${
+        tabIndex={0}
+        onBlur={() => removeDropdown(id)}
+        className={`relative flex ${
           incoming ? "flex-row mr-20" : "flex-row-reverse ml-20"
-        } items-end`}>
+        } items-end`}
+        onClick={() => toggleDropdown(id)}>
         <Image
           alt=""
           src={profilePic}
@@ -24,6 +63,7 @@ export default function ChatBubble({ message, timestamp, profilePic, incoming })
               incoming ? "-left-3" : "-right-3"
             } z-0 bottom-0 bg-[#5A4DE6] dark:bg-[#161616] w-5 h-5`}></div>
         </div>
+        {isDropdownOpen(id) && <Dropdown options={dropdownOptions} />}
       </div>
     </div>
   );

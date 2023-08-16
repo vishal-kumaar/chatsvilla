@@ -6,7 +6,7 @@ import Image from "next/image";
 export default function Dropdown({ options }) {
   return (
     <div
-      className={`z-50 font-firasans outline-none text-base absolute right-3 top-6 bg-white dark:bg-[#161616] text-black dark:text-white w-fit rounded-lg shadow-2xl overflow-hidden`}>
+      className={`z-50 font-firasans outline-none text-base absolute right-3 top-auto bg-white dark:bg-[#161616] text-black dark:text-white w-fit rounded-lg shadow-2xl overflow-hidden`}>
       {options.map((option, index) => (
         <button
           key={index}

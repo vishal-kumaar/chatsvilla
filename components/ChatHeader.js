@@ -66,16 +66,16 @@ export default function ChatHeader() {
       <div
         className="relative"
         tabIndex={0}
-        onBlur={() => closeDropdown("dropdown")}>
+        onBlur={() => closeDropdown("headerDropdown")}>
         <Image
           alt="option"
           src="/icons/option.svg"
           width={20}
           height={20}
           className="w-5 h-5 invert cursor-pointer"
-          onClick={() => toggleDropdown("dropdown")}
+          onClick={() => toggleDropdown("headerDropdown")}
         />
-        {isDropdownOpen("dropdown") && <Dropdown options={dropdownOptions} />}
+        {isDropdownOpen("headerDropdown") && <Dropdown options={dropdownOptions} />}
       </div>
     </header>
   );
