@@ -2,6 +2,7 @@ import "./globals.css";
 import fonts from "./fonts";
 import Contexts from "@/contexts";
 import Sidebar from "@/components/Sidebar";
+import { Toaster } from "react-hot-toast";
 
 export const metadata = {
   title: "Chatsvilla: Instant Conversations at Your Fingertips",
@@ -17,6 +18,7 @@ export default function RootLayout({ children }) {
         <Contexts>
           <div className="block md:flex w-full bg-[#f5f3f3] dark:bg-[#2B2B2B]">
             <Sidebar />
+            <Toaster />
             {children}
           </div>
         </Contexts>
