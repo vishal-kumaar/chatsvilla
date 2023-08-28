@@ -1,10 +1,57 @@
 "use client";
 
 import Link from "next/link";
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
+import login from "@/apis/auth/login";
+import { toast } from "react-hot-toast";
+import ThemeContext from "@/contexts/theme/ThemeContext";
 
 export default function Login() {
+  const { isDark } = useContext(ThemeContext);
+  const [userData, setUserData] = useState({
+    username: "",
+    password: "",
+  });
   const [passowrdType, setPasswordType] = useState("password");
+
+  const updateUserData = (fieldName, value) => {
+    setUserData({
+      ...userData,
+      [fieldName]: value,
+    });
+  };
+
+  const formSubmit = async (event) => {
+    event.preventDefault();
+
+    const response = await login(userData);
+
+    if (response?.success) {
+      toast.success(response.message, {
+        duration: 3000,
+        position: "top-center",
+        style: {
+          borderRadius: "10px",
+          background: isDark ? "#333" : "#fff",
+          color: isDark ? "#fff" : "#000",
+        },
+      });
+      setUserData({
+        username: "",
+        password: "",
+      });
+    } else {
+      toast.error(response?.message, {
+        duration: 3000,
+        position: "top-center",
+        style: {
+          borderRadius: "10px",
+          background: isDark ? "#333" : "#fff",
+          color: isDark ? "#fff" : "#000",
+        },
+      });
+    }
+  };
   return (
     <main className="w-full flex items-center py-10 px-4 sm:px-10 min-h-screen bg-gradient-to-r from-[#5a4de6] via-[#7d59c5] to-[#a78bf6] dark:from-transparent dark:via-transparent dark:to-transparent">
       <div className="flex shadow-2xl w-full sm:w-10/12 mx-auto h-[30rem]">
@@ -22,7 +69,7 @@ export default function Login() {
           <h1 className="font-poppins font-bold text-lg text-[#68647a] dark:text-white">
             USER LOGIN
           </h1>
-          <form className="flex flex-col justify-center gap-y-4 w-9/12">
+          <form className="flex flex-col justify-center gap-y-4 w-9/12" onSubmit={formSubmit}>
             <div className="flex items-center gap-x-2 bg-[#E9E7FF] px-3.5 py-1.5 rounded-2xl">
               <svg
                 className="w-4 h-4 stroke-[#807c97] dark:stroke-[#161616]"
@@ -36,6 +83,11 @@ export default function Login() {
                 type="text"
                 placeholder="Email or Username"
                 className="bg-transparent text-sm text-[#807c97] dark:text-[#161616] outline-none placeholder:text-[#807c97] dark:placeholder:text-[#161616] font-poppins w-full"
+                required
+                onChange={(event) =>
+                  updateUserData("username", event.target.value)
+                }
+                value={userData.username}
               />
             </div>
             <div className="flex items-center gap-x-2 bg-[#E9E7FF] px-4 py-1.5 rounded-2xl">
@@ -50,6 +102,11 @@ export default function Login() {
                 type={passowrdType}
                 placeholder="Password"
                 className="bg-transparent text-sm text-[#807c97] dark:text-[#161616] outline-none placeholder:text-[#807c97] dark:placeholder:text-[#161616] font-poppins w-full"
+                required
+                onChange={(event) =>
+                  updateUserData("password", event.target.value)
+                }
+                value={userData.password}
               />
             </div>
             <div className="flex justify-between gap-x-1 px-1 text-[#68647a] dark:text-white">
