@@ -23,9 +23,11 @@ export default function SessionTokenProvider({ children }) {
   };
 
   const getSessionToken = () => {
-    const sessionToken =
-      sessionStorage.getItem("sessionToken") || getCookie("sessionToken");
-    return sessionToken;
+    if (typeof window !== "undefined") {
+      const sessionToken =
+        sessionStorage.getItem("sessionToken") || getCookie("sessionToken");
+      return sessionToken;
+    }
   };
 
   const removeSession = () => {
