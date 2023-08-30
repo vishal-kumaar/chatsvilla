@@ -6,11 +6,12 @@ import login from "@/apis/auth/login";
 import { toast } from "react-hot-toast";
 import ThemeContext from "@/contexts/theme/ThemeContext";
 import SessionTokenContext from "@/contexts/sessionToken/SessionTokenContext";
+import { useRouter } from "next/navigation";
 
 export default function Login() {
+  const router = useRouter();
   const { isDark } = useContext(ThemeContext);
-  const { setSession } =
-    useContext(SessionTokenContext);
+  const { setSession } = useContext(SessionTokenContext);
   const [userData, setUserData] = useState({
     username: "",
     password: "",
@@ -39,10 +40,7 @@ export default function Login() {
         },
       });
       setSession(response.token.value, response.token.expiresIn);
-      setUserData({
-        username: "",
-        password: "",
-      });
+      router.replace("/");
     } else {
       toast.error(response?.message, {
         duration: 3000,
