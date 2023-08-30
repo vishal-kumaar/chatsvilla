@@ -5,15 +5,17 @@ import React, { useContext, useState } from "react";
 import login from "@/apis/auth/login";
 import { toast } from "react-hot-toast";
 import ThemeContext from "@/contexts/theme/ThemeContext";
+import SessionTokenContext from "@/contexts/sessionToken/SessionTokenContext";
 
 export default function Login() {
   const { isDark } = useContext(ThemeContext);
+  const { setSession } =
+    useContext(SessionTokenContext);
   const [userData, setUserData] = useState({
     username: "",
     password: "",
   });
   const [passowrdType, setPasswordType] = useState("password");
-
   const updateUserData = (fieldName, value) => {
     setUserData({
       ...userData,
@@ -36,6 +38,7 @@ export default function Login() {
           color: isDark ? "#fff" : "#000",
         },
       });
+      setSession(response.token.value, response.token.expiresIn);
       setUserData({
         username: "",
         password: "",
@@ -69,14 +72,16 @@ export default function Login() {
           <h1 className="font-poppins font-bold text-lg text-[#68647a] dark:text-white">
             USER LOGIN
           </h1>
-          <form className="flex flex-col justify-center gap-y-4 w-9/12" onSubmit={formSubmit}>
+          <form
+            className="flex flex-col justify-center gap-y-4 w-9/12"
+            onSubmit={formSubmit}>
             <div className="flex items-center gap-x-2 bg-[#E9E7FF] px-3.5 py-1.5 rounded-2xl">
               <svg
                 className="w-4 h-4 stroke-[#807c97] dark:stroke-[#161616]"
                 xmlns="http://www.w3.org/2000/svg"
                 viewBox="4 0 24 32">
                 <path
-                  stroke-width="2"
+                  strokeWidth="2"
                   d="M16 14c-3.86 0-7-3.14-7-7s3.14-7 7-7 7 3.14 7 7-3.14 7-7 7zm0-12c-2.757 0-5 2.243-5 5s2.243 5 5 5 5-2.243 5-5-2.243-5-5-5zM27 32a1 1 0 0 1-1-1v-6.115a6.95 6.95 0 0 0-6.942-6.943h-6.116A6.95 6.95 0 0 0 6 24.885V31a1 1 0 1 1-2 0v-6.115c0-4.93 4.012-8.943 8.942-8.943h6.116c4.93 0 8.942 4.012 8.942 8.943V31a1 1 0 0 1-1 1z"></path>
               </svg>
               <input
@@ -110,7 +115,7 @@ export default function Login() {
               />
             </div>
             <div className="flex justify-between gap-x-1 px-1 text-[#68647a] dark:text-white">
-              <div class="flex gap-1.5 items-center rounded">
+              <div className="flex gap-1.5 items-center rounded">
                 <input
                   type="checkbox"
                   onChange={(event) =>

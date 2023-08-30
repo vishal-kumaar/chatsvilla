@@ -5,9 +5,11 @@ import Link from "next/link";
 import signup from "@/apis/auth/signup";
 import { toast } from "react-hot-toast";
 import ThemeContext from "@/contexts/theme/ThemeContext";
+import SessionTokenContext from "@/contexts/sessionToken/SessionTokenContext";
 
 export default function Signup() {
   const { isDark } = useContext(ThemeContext);
+  const { setSession } = useContext(SessionTokenContext);
   const [userData, setUserData] = useState({
     name: "",
     username: "",
@@ -38,6 +40,7 @@ export default function Signup() {
           color: isDark ? "#fff" : "#000",
         },
       });
+      setSession(response.token.value, response.token.expiresIn);
       setUserData({
         name: "",
         username: "",
