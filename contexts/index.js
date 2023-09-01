@@ -5,13 +5,16 @@ import SidebarProvider from "./sidebar/SidebarProvider";
 import ThemeProvider from "./theme/ThemeProvider";
 import DropdownProvider from "./dropdown/DropdownProvider";
 import SessionTokenProvider from "./sessionToken/SessionTokenProvider";
+import ChatListProvider from "./chatList/ChatListProvider";
 
 export default function Contexts({ children }) {
   return (
     <SessionTokenProvider>
       <DropdownProvider>
         <SidebarProvider>
-          <ThemeProvider>{children}</ThemeProvider>
+          <ThemeProvider>
+            <ChatListProvider>{children}</ChatListProvider>
+          </ThemeProvider>
         </SidebarProvider>
       </DropdownProvider>
     </SessionTokenProvider>
