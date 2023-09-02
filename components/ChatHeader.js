@@ -7,7 +7,7 @@ import Dropdown from "./Dropdown";
 import { useRouter } from "next/navigation";
 import DropdownContext from "@/contexts/dropdown/DropdownContext";
 
-export default function ChatHeader() {
+export default function ChatHeader({ chat }) {
   const { isDropdownOpen, toggleDropdown, closeDropdown, removeDropdown } =
     useContext(DropdownContext);
   const router = useRouter();
@@ -48,7 +48,7 @@ export default function ChatHeader() {
           onClick={() => router.back()}
         />
         <Link
-          href="/profile/1"
+          href={`/profile/${chat?.participant?.user?._id}`}
           className="flex items-center gap-4 cursor-pointer">
           <Image
             alt="profile-pic"
@@ -58,8 +58,18 @@ export default function ChatHeader() {
             className="w-14 h-14 rounded-full"
           />
           <div>
-            <h1 className="font-signika">John Cena</h1>
-            <p className="font-poppins text-xs">Online</p>
+            <h1 className="font-signika">
+              {chat?.type === "Individual"
+                ? chat?.participant?.user?.name
+                : chat?.groupName}
+            </h1>
+            <p className="font-poppins text-xs">
+              {chat?.type === "Individual"
+                ? chat?.participant?.user?.online
+                  ? "Online"
+                  : "Offline"
+                : ""}
+            </p>
           </div>
         </Link>
       </div>
@@ -75,7 +85,26 @@ export default function ChatHeader() {
           className="w-5 h-5 invert cursor-pointer"
           onClick={() => toggleDropdown("headerDropdown")}
         />
-        {isDropdownOpen("headerDropdown") && <Dropdown options={dropdownOptions} />}
+        {isDropdownOpen("headerDropdown") && (
+          <Dropdown
+            options={[
+              {
+                name: "View Profile",
+                icon: "/icons/profile.svg",
+                callback: () =>
+                  router.push(`/profile/${chat?.participant?.user?._id}`),
+              },
+              {
+                name: "Delete Chat",
+                icon: "/icons/trash.svg",
+              },
+              {
+                name: "Block User",
+                icon: "/icons/block.svg",
+              },
+            ]}
+          />
+        )}
       </div>
     </header>
   );

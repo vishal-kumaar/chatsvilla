@@ -6,7 +6,7 @@ import ChatHeader from "./ChatHeader";
 import MessageInput from "./MessageInput";
 import ChatBubble from "./ChatBubble";
 
-export default function Chat() {
+export default function Chat({chat}) {
   const pathname = usePathname();
 
   useEffect(
@@ -29,7 +29,7 @@ export default function Chat() {
 
   return (
     <div className="w-full min-h-screen md:min-h-full flex flex-col justify-between">
-      <ChatHeader />
+      <ChatHeader chat={chat} />
       <div className="flex-grow flex flex-col justify-end gap-y-3 px-2.5 py-3 font-poppins font-medium text-white bg-[#DFDBDB] dark:bg-[#2B2B2B]">
         <ChatBubble
           id="chat1"
