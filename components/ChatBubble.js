@@ -50,7 +50,7 @@ export default function ChatBubble({
         onClick={() => toggleDropdown(id)}>
         <Image
           alt=""
-          src={profilePic}
+          src={profilePic || "/images/user.svg"}
           width={44}
           height={44}
           className="w-11 h-11 z-10 p-1.5 bg-[#DFDBDB] dark:bg-[#2B2B2B] rounded-full"

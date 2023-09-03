@@ -32,7 +32,7 @@ export default function ChatList({ className, chatList }) {
             } `}>
             <Image
               alt="profile-pic"
-              src="/images/user.svg"
+              src={chat?.participant?.user?.profilePic || "/images/user.svg"}
               height={48}
               width={48}
               className="rounded-full w-12 h-12"
