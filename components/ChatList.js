@@ -24,9 +24,9 @@ export default function ChatList({ className, chatList }) {
         {chatList?.map((chat, index) => (
           <Link
             key={index}
-            href={`/chat/${chat._id}`}
+            href={`/chat/${chat?._id}`}
             className={`flex items-center gap-3 w-full border-y px-2.5 py-3 cursor-pointer ${
-              isActive(chat._id)
+              isActive(chat?._id)
                 ? "text-white bg-[#5a4de6] dark:bg-black"
                 : "bg-transparent hover:bg-[#dfdbdb] dark:hover:bg-[#555353]"
             } `}>
@@ -40,18 +40,20 @@ export default function ChatList({ className, chatList }) {
             <div className=" w-full">
               <div className="flex items-center justify-between gap-3">
                 <h2 className="font-signika text-sm line-clamp-1">
-                  {chat.groupName || chat.conversationName}
+                  {chat?.type === "Individual"
+                    ? chat?.participant?.user?.name
+                    : chat.groupName}
                 </h2>
                 <p className="font-firasans text-xs">
-                  {formatLastMessageTime(chat.lastMessage.createdAt)}
+                  {formatLastMessageTime(chat?.lastMessage?.createdAt)}
                 </p>
               </div>
               <div className="flex items-center justify-between gap-7 mt-px">
                 <p className="font-poppins text-xs line-clamp-1 break-all">
-                  {chat.lastMessage.message}
+                  {chat?.lastMessage?.message}
                 </p>
                 <p className="font-roboto font-bold text-xs bg-red-500 text-white py-[1px] px-[5px] rounded-full mt-1">
-                  {chat.unreadMessageCount}
+                  {chat?.unreadMessageCount}
                 </p>
               </div>
             </div>
