@@ -25,7 +25,7 @@ export default function ChatList({ className, chatList }) {
           <Link
             key={index}
             href={`/chat/${chat?._id}`}
-            className={`flex items-center gap-3 w-full border-y px-2.5 py-3 cursor-pointer ${
+            className={`flex gap-3 w-full border-y px-2.5 py-3 cursor-pointer ${
               isActive(chat?._id)
                 ? "text-white bg-[#5a4de6] dark:bg-black"
                 : "bg-transparent hover:bg-[#dfdbdb] dark:hover:bg-[#555353]"
@@ -37,16 +37,18 @@ export default function ChatList({ className, chatList }) {
               width={48}
               className="rounded-full w-12 h-12"
             />
-            <div className=" w-full">
+            <div className="w-full mt-1.5">
               <div className="flex items-center justify-between gap-3">
                 <h2 className="font-signika text-sm line-clamp-1">
                   {chat?.type === "Individual"
                     ? chat?.participant?.user?.name
                     : chat.groupName}
                 </h2>
-                <p className="font-firasans text-xs">
-                  {formatLastMessageTime(chat?.lastMessage?.createdAt)}
-                </p>
+                {chat?.lastMessage?.createdAt && (
+                  <p className="font-firasans text-xs">
+                    {formatLastMessageTime(chat.lastMessage.createdAt)}
+                  </p>
+                )}
               </div>
               <div className="flex items-center justify-between gap-7 mt-px">
                 <p className="font-poppins text-xs line-clamp-1 break-all">
