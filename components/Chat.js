@@ -16,7 +16,7 @@ export default function Chat({ chat }) {
       }
     },
     //eslint-disable-next-line
-    [chat]
+    []
   );
 
   if (pathname === "/") {
@@ -34,16 +34,11 @@ export default function Chat({ chat }) {
       <ChatHeader chat={chat} />
       <div className="flex-grow flex flex-col justify-end gap-y-3 px-2.5 py-3 font-poppins font-medium text-white bg-[#DFDBDB] dark:bg-[#2B2B2B]">
         {chat?.messages?.map((message, index) => (
-          <>
-            <ChatBubble
-              key={index}
-              id={message?._id}
-              message={message?.message}
-              timestamp="11:58 PM"
-              profilePic={message?.sender?.profilePic}
-              incoming={chat?.userId !== message?.sender?._id}
-            />
-          </>
+          <ChatBubble
+            key={index}
+            message={message}
+            incoming={chat?.userId !== message?.sender?._id}
+          />
         ))}
       </div>
       <MessageInput />

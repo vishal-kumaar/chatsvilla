@@ -8,7 +8,7 @@ export default function ChatListProvider({ children }) {
   const { getSessionToken } = useContext(SessionTokenContext);
   const getChatList = async () => {
     const res = await getAllConversation(getSessionToken());
-    if (res.success) {
+    if (res?.success) {
       setChatList(res.conversations);
     }
   };

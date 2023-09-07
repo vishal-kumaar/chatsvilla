@@ -52,9 +52,11 @@ export default function ChatList({ className, chatList }) {
                 <p className="font-poppins text-xs line-clamp-1 break-all">
                   {chat?.lastMessage?.message}
                 </p>
-                <p className="font-roboto font-bold text-xs bg-red-500 text-white py-[1px] px-[5px] rounded-full mt-1">
-                  {chat?.unreadMessageCount}
-                </p>
+                {chat?.unreadMessageCount !== 0 && (
+                  <p className="font-roboto font-bold text-xs bg-red-500 text-white py-[1px] px-[5px] rounded-full mt-1">
+                    {chat?.unreadMessageCount}
+                  </p>
+                )}
               </div>
             </div>
           </Link>

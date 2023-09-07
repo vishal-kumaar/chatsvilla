@@ -12,21 +12,6 @@ export default function ChatHeader({ chat }) {
     useContext(DropdownContext);
   const router = useRouter();
 
-  const dropdownOptions = [
-    {
-      name: "View Profile",
-      icon: "/icons/profile.svg",
-      callback: () => router.push("/profile/1"),
-    },
-    {
-      name: "Delete Chat",
-      icon: "/icons/trash.svg",
-    },
-    {
-      name: "Block User",
-      icon: "/icons/block.svg",
-    },
-  ];
 
   useEffect(
     () => {
