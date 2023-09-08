@@ -19,7 +19,11 @@ export default function Conversation() {
   const getChat = async () => {
     const res = await getConversation(conversationId, getSessionToken());
     if (res?.success) {
-      setChat(res.conversation);
+      const conversation = res.conversation;
+      setChat({
+        ...conversation,
+        messages: Object.entries(conversation.messages),
+      });
     }
   };
 

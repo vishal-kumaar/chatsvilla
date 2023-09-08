@@ -8,6 +8,7 @@ import deleteMessage from "@/apis/conversation/deleteMessage";
 import SessionTokenContext from "@/contexts/sessionToken/SessionTokenContext";
 import { toast } from "react-hot-toast";
 import ThemeContext from "@/contexts/theme/ThemeContext";
+import formatTime from "@/utils/formatTime";
 
 export default function ChatBubble({ message, incoming }) {
   const { isDropdownOpen, toggleDropdown, closeDropdown, removeDropdown } =
@@ -50,7 +51,7 @@ export default function ChatBubble({ message, incoming }) {
 
   return (
     <div
-      className={`flex ${incoming ? "justify-start" : "justify-end"} w-full`}>
+      className={`flex ${incoming ? "justify-start" : "justify-end"} w-full mb-3`}>
       <div
         tabIndex={0}
         onBlur={() => closeDropdown(message?._id)}
@@ -67,7 +68,9 @@ export default function ChatBubble({ message, incoming }) {
         />
         <div className="relative bg-[#5A4DE6] dark:bg-[#161616] w-fit px-1.5 py-1 rounded-md">
           <p className="text-sm mx-1">{message?.message}</p>
-          <p className="text-[10px] text-right mt-px ml-4 mx-1">{"11:58 PM"}</p>
+          <p className="text-[10px] text-right mt-px ml-4 mx-1">
+            {formatTime(message?.createdAt)}
+          </p>
           <div
             className={`absolute ${
               incoming ? "-left-3" : "-right-3"
