@@ -81,7 +81,7 @@ export default function ChatBubble({ message, incoming }) {
             options={[
               {
                 name: "Copy",
-                icon: "/icons/block.svg",
+                icon: "/icons/copy.svg",
               },
               {
                 name: "Edit",
