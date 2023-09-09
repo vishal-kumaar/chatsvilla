@@ -7,14 +7,16 @@ import Header from "@/components/Header";
 import { useParams } from "next/navigation";
 import SessionTokenContext from "@/contexts/sessionToken/SessionTokenContext";
 import getProfileById from "@/apis/user/getProfileById";
+import getMutualFriends from "@/apis/user/getMutualFriends";
 
 export default function Profile() {
   const [isOwner, setIsOwner] = useState(false);
   const [user, setUser] = useState(null);
+  const [mutualFriends, setMutualFriends] = useState(null);
   const { username } = useParams();
   const { getSessionToken } = useContext(SessionTokenContext);
 
-  const getUser = async () => {
+  const handleUser = async () => {
     const res = await getProfileById(username, getSessionToken());
     if (res?.success) {
       setIsOwner(res.isOwner);
@@ -22,8 +24,16 @@ export default function Profile() {
     }
   };
 
+  const handleMutualFriends = async () => {
+    const res = await getMutualFriends(username, getSessionToken());
+    if (res?.success) {
+      setMutualFriends(res?.mutualFriends);
+    }
+  };
+
   useEffect(() => {
-    getUser();
+    handleUser();
+    handleMutualFriends();
   }, []);
 
   return (
@@ -55,7 +65,7 @@ export default function Profile() {
           <p className="font-poppins text-xs sm:text-sm mt-px">{user?.email}</p>
           <p className="font-poppins text-xs sm:text-sm mt-px">{user?.bio}</p>
           <p className="font-poppins text-xs sm:text-sm mt-1">
-            3 Mutual Friends
+            {mutualFriends?.length} Mutual Friends
           </p>
         </div>
       </main>
