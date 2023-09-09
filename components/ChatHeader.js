@@ -6,12 +6,42 @@ import Link from "next/link";
 import Dropdown from "./Dropdown";
 import { useRouter } from "next/navigation";
 import DropdownContext from "@/contexts/dropdown/DropdownContext";
+import deleteConversation from "@/apis/conversation/deleteConversation";
+import SessionTokenContext from "@/contexts/sessionToken/SessionTokenContext";
+import { toast } from "react-hot-toast";
+import ThemeContext from "@/contexts/theme/ThemeContext";
 
 export default function ChatHeader({ chat }) {
   const { isDropdownOpen, toggleDropdown, closeDropdown, removeDropdown } =
     useContext(DropdownContext);
+  const { getSessionToken } = useContext(SessionTokenContext);
+  const { isDark } = useContext(ThemeContext);
   const router = useRouter();
 
+  const handleDeleteConversation = async () => {
+    const res = await deleteConversation(chat?._id, getSessionToken());
+    if (res?.success) {
+      toast.success(res?.message, {
+        duration: 3000,
+        position: "top-center",
+        style: {
+          borderRadius: "10px",
+          background: isDark ? "#333" : "#fff",
+          color: isDark ? "#fff" : "#000",
+        },
+      });
+    } else {
+      toast.error(res?.message, {
+        duration: 3000,
+        position: "top-center",
+        style: {
+          borderRadius: "10px",
+          background: isDark ? "#333" : "#fff",
+          color: isDark ? "#fff" : "#000",
+        },
+      });
+    }
+  };
 
   useEffect(
     () => {
@@ -82,6 +112,7 @@ export default function ChatHeader({ chat }) {
               {
                 name: "Delete Chat",
                 icon: "/icons/trash.svg",
+                callback: handleDeleteConversation,
               },
               {
                 name: "Block User",
