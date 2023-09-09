@@ -8,6 +8,9 @@ import { useParams } from "next/navigation";
 import SessionTokenContext from "@/contexts/sessionToken/SessionTokenContext";
 import getProfileById from "@/apis/user/getProfileById";
 import getMutualFriends from "@/apis/user/getMutualFriends";
+import sendRequests from "@/apis/user/sendRequest";
+import { toast } from "react-hot-toast";
+import ThemeContext from "@/contexts/theme/ThemeContext";
 
 export default function Profile() {
   const [isOwner, setIsOwner] = useState(false);
@@ -15,6 +18,7 @@ export default function Profile() {
   const [mutualFriends, setMutualFriends] = useState(null);
   const { username } = useParams();
   const { getSessionToken } = useContext(SessionTokenContext);
+  const { isDark } = useContext(ThemeContext);
 
   const handleUser = async () => {
     const res = await getProfileById(username, getSessionToken());
@@ -28,6 +32,31 @@ export default function Profile() {
     const res = await getMutualFriends(username, getSessionToken());
     if (res?.success) {
       setMutualFriends(res?.mutualFriends);
+    }
+  };
+
+  const handleSendRequest = async () => {
+    const res = await sendRequests(username, getSessionToken());
+    if (res?.success) {
+      toast.success(response.message, {
+        duration: 3000,
+        position: "top-center",
+        style: {
+          borderRadius: "10px",
+          background: isDark ? "#333" : "#fff",
+          color: isDark ? "#fff" : "#000",
+        },
+      });
+    } else {
+      toast.error(res?.message, {
+        duration: 3000,
+        position: "top-center",
+        style: {
+          borderRadius: "10px",
+          background: isDark ? "#333" : "#fff",
+          color: isDark ? "#fff" : "#000",
+        },
+      });
     }
   };
 
@@ -51,11 +80,15 @@ export default function Profile() {
           <div className="flex w-full items-center justify-between gap-x-4">
             <h1 className="font-signika text-xl sm:text-2xl">{user?.name}</h1>
             {isOwner ? (
-              <button className="bg-gradient-to-r from-[#D570BC] to-[#8B6CE2] hover:from-[#aa6198] hover:to-[#8f72dd] dark:from-[#3b3a3a] dark:to-[#000] dark:hover:from-[#1f1e1e] dark:hover:to-[#131212] text-white w-fit px-3 sm:px-5 py-1 rounded-2xl text-xs sm:text-sm font-roboto">
+              <Link
+                href="/settings/update/profile"
+                className="bg-gradient-to-r from-[#D570BC] to-[#8B6CE2] hover:from-[#aa6198] hover:to-[#8f72dd] dark:from-[#3b3a3a] dark:to-[#000] dark:hover:from-[#1f1e1e] dark:hover:to-[#131212] text-white w-fit px-3 sm:px-5 py-1 rounded-2xl text-xs sm:text-sm font-roboto">
                 Edit Profile
-              </button>
+              </Link>
             ) : (
-              <button className="bg-gradient-to-r from-[#D570BC] to-[#8B6CE2] hover:from-[#aa6198] hover:to-[#8f72dd] dark:from-[#3b3a3a] dark:to-[#000] dark:hover:from-[#1f1e1e] dark:hover:to-[#131212] text-white w-fit px-3 sm:px-5 py-1 rounded-2xl text-xs sm:text-sm font-roboto">
+              <button
+                className="bg-gradient-to-r from-[#D570BC] to-[#8B6CE2] hover:from-[#aa6198] hover:to-[#8f72dd] dark:from-[#3b3a3a] dark:to-[#000] dark:hover:from-[#1f1e1e] dark:hover:to-[#131212] text-white w-fit px-3 sm:px-5 py-1 rounded-2xl text-xs sm:text-sm font-roboto"
+                onClick={handleSendRequest}>
                 Send Request
               </button>
             )}
@@ -64,9 +97,11 @@ export default function Profile() {
           <p className="font-poppins text-xs sm:text-sm mt-2">{user?.gender}</p>
           <p className="font-poppins text-xs sm:text-sm mt-px">{user?.email}</p>
           <p className="font-poppins text-xs sm:text-sm mt-px">{user?.bio}</p>
-          <p className="font-poppins text-xs sm:text-sm mt-1">
-            {mutualFriends?.length} Mutual Friends
-          </p>
+          {isOwner || (
+            <p className="font-poppins text-xs sm:text-sm mt-1">
+              {mutualFriends?.length} Mutual Friends
+            </p>
+          )}
         </div>
       </main>
       <hr className="my-5 sm:my-10" />
