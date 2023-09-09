@@ -69,7 +69,7 @@ export default function Chat({ chat }) {
         <div className="flex-grow flex flex-col justify-end gap-y-3 px-2.5 py-3 font-poppins font-medium text-white bg-[#DFDBDB] dark:bg-[#2B2B2B]">
           {messages?.map((msgArr, index1) => (
             <div key={index1}>
-              <h1 className="bg-gray-400 mx-auto w-fit font-firasans text-sm rounded-md px-1">
+              <h1 className="bg-gray-400 dark:bg-gray-700 mx-auto w-fit font-firasans text-sm rounded-md px-1">
                 {formatDate(msgArr[0])}
               </h1>
               {msgArr[1].map((message, index2) => (
