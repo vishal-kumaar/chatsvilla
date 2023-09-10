@@ -41,6 +41,33 @@ export default function ChatBubble({ message, incoming }) {
     }
   };
 
+  const copyMessage = () => {
+    navigator.clipboard
+      .writeText(message?.message)
+      .then(() => {
+        toast.success("Message copied", {
+          duration: 3000,
+          position: "top-center",
+          style: {
+            borderRadius: "10px",
+            background: isDark ? "#333" : "#fff",
+            color: isDark ? "#fff" : "#000",
+          },
+        });
+      })
+      .catch(() => {
+        toast.error("Failed to copy message", {
+          duration: 3000,
+          position: "top-center",
+          style: {
+            borderRadius: "10px",
+            background: isDark ? "#333" : "#fff",
+            color: isDark ? "#fff" : "#000",
+          },
+        });
+      });
+  };
+
   useEffect(
     () => {
       return removeDropdown();
@@ -51,7 +78,9 @@ export default function ChatBubble({ message, incoming }) {
 
   return (
     <div
-      className={`flex ${incoming ? "justify-start" : "justify-end"} w-full mb-3`}>
+      className={`flex ${
+        incoming ? "justify-start" : "justify-end"
+      } w-full mb-3`}>
       <div
         tabIndex={0}
         onBlur={() => closeDropdown(message?._id)}
@@ -82,6 +111,7 @@ export default function ChatBubble({ message, incoming }) {
               {
                 name: "Copy",
                 icon: "/icons/copy.svg",
+                callback: copyMessage,
               },
               {
                 name: "Edit",
