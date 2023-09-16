@@ -5,11 +5,13 @@ import Image from "next/image";
 import SidebarContext from "@/contexts/sidebar/SidebarContext";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import UserContext from "@/contexts/user/UserContext";
 
 export default function Sidebar() {
   const { sidebar, toggleSidebar } = useContext(SidebarContext);
   const pathname = usePathname();
   const hideSidebarRoutes = ["/login", "/signup"];
+  const { user } = useContext(UserContext);
 
   const isActive = (path) => {
     const basePath = pathname.split("/")[1];
@@ -78,7 +80,7 @@ export default function Sidebar() {
             <p className="font-poppins text-base">Search</p>
           </Link>
           <Link
-            href="/profile/johncena"
+            href={`/profile/${user?._id}`}
             className={`flex items-center outline-none gap-x-4 ${
               isActive("profile")
                 ? "bg-[#4a48ad] dark:bg-[#fff] dark:text-black"
