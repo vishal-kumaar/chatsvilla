@@ -10,6 +10,7 @@ import markConversationAsRead from "@/apis/conversation/markConversationAsRead";
 import SessionTokenContext from "@/contexts/sessionToken/SessionTokenContext";
 import { toast } from "react-hot-toast";
 import ThemeContext from "@/contexts/theme/ThemeContext";
+import UserContext from "@/contexts/user/UserContext";
 
 export default function Chat({ chat }) {
   const pathname = usePathname();
@@ -17,6 +18,7 @@ export default function Chat({ chat }) {
   const { getSessionToken } = useContext(SessionTokenContext);
   const { isDark } = useContext(ThemeContext);
   const { conversationId } = useParams();
+  const { user } = useContext(UserContext);
 
   const readMessage = async () => {
     const res = await markConversationAsRead(conversationId, getSessionToken());
@@ -76,7 +78,7 @@ export default function Chat({ chat }) {
                 <ChatBubble
                   key={index2}
                   message={message}
-                  incoming={chat?.userId !== message?.sender?._id}
+                  incoming={user?._id !== message?.sender?._id}
                 />
               ))}
             </div>

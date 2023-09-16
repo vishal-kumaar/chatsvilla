@@ -1,12 +1,15 @@
 import Image from "next/image";
-import React from "react";
+import React, { useContext } from "react";
 import SearchBar from "./SearchBar";
 import Link from "next/link";
 import formatLastMessageTime from "@/utils/formatLastMessageTime";
 import { usePathname } from "next/navigation";
+import UserContext from "@/contexts/user/UserContext";
+import getParticipantUser from "@/utils/getParticipantUser";
 
 export default function ChatList({ className, chatList }) {
   const pathname = usePathname();
+  const { user } = useContext(UserContext);
 
   const isActive = (path) => {
     const basePath = pathname.split("/");
@@ -41,8 +44,8 @@ export default function ChatList({ className, chatList }) {
               <div className="flex items-center justify-between gap-3">
                 <h2 className="font-signika text-sm line-clamp-1">
                   {chat?.type === "Individual"
-                    ? chat?.participant?.user?.name
-                    : chat.groupName}
+                    ? getParticipantUser(user?.id, chat?.participants)?.user?.name
+                    : chat?.groupName}
                 </h2>
                 {chat?.lastMessage?.createdAt && (
                   <p className="font-firasans text-xs">

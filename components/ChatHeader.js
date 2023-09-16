@@ -10,6 +10,8 @@ import deleteConversation from "@/apis/conversation/deleteConversation";
 import SessionTokenContext from "@/contexts/sessionToken/SessionTokenContext";
 import { toast } from "react-hot-toast";
 import ThemeContext from "@/contexts/theme/ThemeContext";
+import getParticipantUser from "@/utils/getParticipantUser";
+import UserContext from "@/contexts/user/UserContext";
 
 export default function ChatHeader({ chat }) {
   const { isDropdownOpen, toggleDropdown, closeDropdown, removeDropdown } =
@@ -17,6 +19,13 @@ export default function ChatHeader({ chat }) {
   const { getSessionToken } = useContext(SessionTokenContext);
   const { isDark } = useContext(ThemeContext);
   const router = useRouter();
+  const { user } = useContext(UserContext);
+
+  let participantUser = null;
+
+  if (chat?.type === "Individual") {
+    participantUser = getParticipantUser(user?._id, chat?.participants);
+  }
 
   const handleDeleteConversation = async () => {
     const res = await deleteConversation(chat?._id, getSessionToken());
@@ -63,7 +72,7 @@ export default function ChatHeader({ chat }) {
           onClick={() => router.back()}
         />
         <Link
-          href={`/profile/${chat?.participant?.user?._id}`}
+          href={`/profile/${participantUser?.user?._id}` || ``}
           className="flex items-center gap-4 cursor-pointer">
           <Image
             alt="profile-pic"
@@ -74,9 +83,7 @@ export default function ChatHeader({ chat }) {
           />
           <div>
             <h1 className="font-signika">
-              {chat?.type === "Individual"
-                ? chat?.participant?.user?.name
-                : chat?.groupName}
+              {participantUser?.user?.name || chat?.groupName}
             </h1>
             <p className="font-poppins text-xs">
               {chat?.type === "Individual"
