@@ -1,30 +1,30 @@
 "use client";
 
-import React, { useContext, useEffect } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import Dropdown from "@/components/Dropdown";
 import Header from "@/components/Header";
 import DropdownContext from "@/contexts/dropdown/DropdownContext";
+import SessionTokenContext from "@/contexts/sessionToken/SessionTokenContext";
+import getFriends from "@/apis/user/getFriends";
 
 export default function Friends() {
+  const { getSessionToken } = useContext(SessionTokenContext);
   const { isDropdownOpen, toggleDropdown, closeDropdown, removeDropdown } =
     useContext(DropdownContext);
-  const friends = "";
+  const [friends, setFriends] = useState(null);
 
-  const dropdownOptions = [
-    {
-      name: "Unfriend",
-      icon: "/icons/unfriend.svg",
-    },
-    {
-      name: "Block",
-      icon: "/icons/block.svg",
-    },
-  ];
+  const handleFriends = async () => {
+    const res = await getFriends(getSessionToken());
+    if (res?.success) {
+      setFriends(res.friends);
+    }
+  };
 
   useEffect(
     () => {
+      handleFriends();
       return removeDropdown();
     },
     //eslint-disable-next-line
@@ -47,44 +47,61 @@ export default function Friends() {
       <hr className="pb-8" />
       {friends ? (
         <div className="min-h-[calc(100vh-185px)]">
-          <div className="flex items-center text-black dark:text-white bg-white dark:bg-transparent hover:bg-[#dfdbdb] dark:hover:bg-[#555353] px-2.5 py-3 border-y">
-            <Link
-              href="/profile/1"
-              className="flex items-center gap-x-4 w-full cursor-pointer">
-              <Image
-                alt="profile-pic"
-                src="/images/user.svg"
-                height={48}
-                width={48}
-                className="rounded-full w-12 h-12"
-              />
-              <div className="w-full">
-                <h2 className="font-signika text-sm line-clamp-1">John Cena</h2>
-                <p className="font-poppins text-xs line-clamp-1 break-all max-w-full">
-                  <span className="mr-4">offical_johncena</span>
-                  <span className="relative before:absolute before:top-1.5 before:-left-2.5 before:h-1 before:w-1 before:bg-[#555353] dark:before:bg-white before:rounded-full">
-                    johncena@gmail.com
-                  </span>
-                </p>
-              </div>
-            </Link>
+          {friends?.map((friend, index) => (
             <div
-              className="relative"
-              tabIndex={0}
-              onBlur={() => closeDropdown("dropdown1")}>
-              <Image
-                alt="options"
-                src="/icons/option.svg"
-                height={20}
-                width={20}
-                className="rounded-full w-5 h-5 cursor-pointer invert-0 dark:invert"
-                onClick={() => toggleDropdown("dropdown1")}
-              />
-              {isDropdownOpen("dropdown1") && (
-                <Dropdown options={dropdownOptions} />
-              )}
+              key={index}
+              className="flex items-center text-black dark:text-white bg-white dark:bg-transparent hover:bg-[#dfdbdb] dark:hover:bg-[#555353] px-2.5 py-3 border-y">
+              <Link
+                href={`/profile/${friend?._id}`}
+                className="flex items-center gap-x-4 w-full cursor-pointer">
+                <Image
+                  src={friend?.profilePic || "/images/user.svg"}
+                  alt="profile-pic"
+                  height={48}
+                  width={48}
+                  className="rounded-full w-12 h-12"
+                />
+                <div className="w-full">
+                  <h2 className="font-signika text-sm line-clamp-1">
+                    {friend?.name}
+                  </h2>
+                  <p className="font-poppins text-xs line-clamp-1 break-all max-w-full">
+                    <span className="mr-4">{friend?.username}</span>
+                    <span className="relative before:absolute before:top-1.5 before:-left-2.5 before:h-1 before:w-1 before:bg-[#555353] dark:before:bg-white before:rounded-full">
+                      {friend?.email}
+                    </span>
+                  </p>
+                </div>
+              </Link>
+              <div
+                className="relative"
+                tabIndex={0}
+                onBlur={() => closeDropdown(friend?._id)}>
+                <Image
+                  alt="options"
+                  src="/icons/option.svg"
+                  height={20}
+                  width={20}
+                  className="rounded-full w-5 h-5 cursor-pointer invert-0 dark:invert"
+                  onClick={() => toggleDropdown(friend?._id)}
+                />
+                {isDropdownOpen(friend?._id) && (
+                  <Dropdown
+                    options={[
+                      {
+                        name: "Unfriend",
+                        icon: "/icons/unfriend.svg",
+                      },
+                      {
+                        name: "Block",
+                        icon: "/icons/block.svg",
+                      },
+                    ]}
+                  />
+                )}
+              </div>
             </div>
-          </div>
+          ))}
         </div>
       ) : (
         <div className="flex flex-col gap-y-2 h-[calc(100vh-185px)] justify-center items-center">
