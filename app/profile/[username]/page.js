@@ -13,7 +13,6 @@ import { toast } from "react-hot-toast";
 import ThemeContext from "@/contexts/theme/ThemeContext";
 
 export default function Profile() {
-  const [isOwner, setIsOwner] = useState(false);
   const [user, setUser] = useState(null);
   const [mutualFriends, setMutualFriends] = useState(null);
   const { username } = useParams();
@@ -23,8 +22,10 @@ export default function Profile() {
   const handleUser = async () => {
     const res = await getProfileById(username, getSessionToken());
     if (res?.success) {
-      setIsOwner(res.isOwner);
-      setUser(res.user);
+      setUser({
+        isOwner: res.isOwner,
+        ...res.user,
+      });
     }
   };
 
@@ -79,7 +80,7 @@ export default function Profile() {
         <div className="w-full">
           <div className="flex w-full items-center justify-between gap-x-4">
             <h1 className="font-signika text-xl sm:text-2xl">{user?.name}</h1>
-            {isOwner ? (
+            {user?.isOwner ? (
               <Link
                 href="/settings/update/profile"
                 className="bg-gradient-to-r from-[#D570BC] to-[#8B6CE2] hover:from-[#aa6198] hover:to-[#8f72dd] dark:from-[#3b3a3a] dark:to-[#000] dark:hover:from-[#1f1e1e] dark:hover:to-[#131212] text-white w-fit px-3 sm:px-5 py-1 rounded-2xl text-xs sm:text-sm font-roboto">
@@ -97,7 +98,7 @@ export default function Profile() {
           <p className="font-poppins text-xs sm:text-sm mt-2">{user?.gender}</p>
           <p className="font-poppins text-xs sm:text-sm mt-px">{user?.email}</p>
           <p className="font-poppins text-xs sm:text-sm mt-px">{user?.bio}</p>
-          {isOwner || (
+          {user?.isOwner || (
             <p className="font-poppins text-xs sm:text-sm mt-1">
               {mutualFriends?.length} Mutual Friends
             </p>
