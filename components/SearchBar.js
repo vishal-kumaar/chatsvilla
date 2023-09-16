@@ -21,7 +21,9 @@ export default function SearchBar() {
   };
 
   useEffect(() => {
-    setInput(query);
+    if (query) {
+      setInput(query);
+    }
   }, []);
 
   return (
