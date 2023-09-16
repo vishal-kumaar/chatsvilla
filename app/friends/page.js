@@ -36,7 +36,7 @@ export default function Friends() {
       <Header className="px-1" />
       <div className="sticky top-0 z-30 pt-6 md:pt-10 bg-[#f5f3f3] dark:bg-[#161616] flex flex-wrap justify-between items-center gap-x-4">
         <h1 className="text-black dark:text-white font-signika text-2xl sm:text-3xl mb-1">
-          Friends <span className="font-firasans text-xl">(0)</span>
+          Friends <span className="font-firasans text-xl">({friends?.length})</span>
         </h1>
         <Link
           href="/friends/requests"
