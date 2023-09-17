@@ -11,21 +11,20 @@ import getMutualFriends from "@/apis/user/getMutualFriends";
 import sendRequests from "@/apis/user/sendRequest";
 import { toast } from "react-hot-toast";
 import ThemeContext from "@/contexts/theme/ThemeContext";
+import UserContext from "@/contexts/user/UserContext";
 
 export default function Profile() {
-  const [user, setUser] = useState(null);
+  const [userData, setUserData] = useState(null);
   const [mutualFriends, setMutualFriends] = useState(null);
   const { username } = useParams();
   const { getSessionToken } = useContext(SessionTokenContext);
   const { isDark } = useContext(ThemeContext);
+  const { user } = useContext(UserContext);
 
   const handleUser = async () => {
     const res = await getProfileById(username, getSessionToken());
     if (res?.success) {
-      setUser({
-        isOwner: res.isOwner,
-        ...res.user,
-      });
+      setUserData(res.user);
     }
   };
 
@@ -72,33 +71,59 @@ export default function Profile() {
       <main className="flex flex-col sm:flex-row items-center sm:items-start justify-center sm:justify-normal gap-8 max-w-4xl mx-auto w-full">
         <Image
           alt="profile-pic"
-          src={user?.profilePicture || "/images/user.svg"}
+          src={userData?.profilePicture || "/images/user.svg"}
           width={160}
           height={160}
           className="w-40 h-40 rounded-full"
         />
         <div className="w-full">
           <div className="flex w-full items-center justify-between gap-x-4">
-            <h1 className="font-signika text-xl sm:text-2xl">{user?.name}</h1>
-            {user?.isOwner ? (
+            <h1 className="font-signika text-xl sm:text-2xl">
+              {userData?.name}
+            </h1>
+            {user?._id === userData?._id ? (
               <Link
                 href="/settings/update/profile"
                 className="bg-gradient-to-r from-[#D570BC] to-[#8B6CE2] hover:from-[#aa6198] hover:to-[#8f72dd] dark:from-[#3b3a3a] dark:to-[#000] dark:hover:from-[#1f1e1e] dark:hover:to-[#131212] text-white w-fit px-3 sm:px-5 py-1 rounded-2xl text-xs sm:text-sm font-roboto">
                 Edit Profile
               </Link>
             ) : (
-              <button
-                className="bg-gradient-to-r from-[#D570BC] to-[#8B6CE2] hover:from-[#aa6198] hover:to-[#8f72dd] dark:from-[#3b3a3a] dark:to-[#000] dark:hover:from-[#1f1e1e] dark:hover:to-[#131212] text-white w-fit px-3 sm:px-5 py-1 rounded-2xl text-xs sm:text-sm font-roboto"
-                onClick={handleSendRequest}>
-                Send Request
-              </button>
+              <>
+                {user?.friends.includes(userData?._id) ? (
+                  <button className="bg-gradient-to-r from-[#D570BC] to-[#8B6CE2] hover:from-[#aa6198] hover:to-[#8f72dd] dark:from-[#3b3a3a] dark:to-[#000] dark:hover:from-[#1f1e1e] dark:hover:to-[#131212] text-white w-fit px-3 sm:px-5 py-1 rounded-2xl text-xs sm:text-sm font-roboto">
+                    Unfriend
+                  </button>
+                ) : (
+                  <>
+                    {user?.receivedFriendRequests.includes(userData?._id) ? (
+                      <button className="bg-gradient-to-r from-[#D570BC] to-[#8B6CE2] hover:from-[#aa6198] hover:to-[#8f72dd] dark:from-[#3b3a3a] dark:to-[#000] dark:hover:from-[#1f1e1e] dark:hover:to-[#131212] text-white w-fit px-3 sm:px-5 py-1 rounded-2xl text-xs sm:text-sm font-roboto">
+                        Cancel Request
+                      </button>
+                    ) : (
+                      <button
+                        className="bg-gradient-to-r from-[#D570BC] to-[#8B6CE2] hover:from-[#aa6198] hover:to-[#8f72dd] dark:from-[#3b3a3a] dark:to-[#000] dark:hover:from-[#1f1e1e] dark:hover:to-[#131212] text-white w-fit px-3 sm:px-5 py-1 rounded-2xl text-xs sm:text-sm font-roboto"
+                        onClick={handleSendRequest}>
+                        Send Request
+                      </button>
+                    )}
+                  </>
+                )}
+              </>
             )}
           </div>
-          <p className="font-poppins text-sm sm:text-base">@{user?.username}</p>
-          <p className="font-poppins text-xs sm:text-sm mt-2">{user?.gender}</p>
-          <p className="font-poppins text-xs sm:text-sm mt-px">{user?.email}</p>
-          <p className="font-poppins text-xs sm:text-sm mt-px">{user?.bio}</p>
-          {user?.isOwner || (
+          <p className="font-poppins text-sm sm:text-base">
+            @{userData?.username}
+          </p>
+          <p className="font-poppins text-xs sm:text-sm mt-2">
+            {userData?.gender}
+          </p>
+          <p className="font-poppins text-xs sm:text-sm mt-px">
+            {userData?.email}
+          </p>
+          <p className="font-poppins text-xs sm:text-sm mt-px">
+            {userData?.bio}
+          </p>
+          {user?._id !== userData?._id && (
             <p className="font-poppins text-xs sm:text-sm mt-1">
               {mutualFriends?.length} Mutual Friends
             </p>
@@ -110,12 +135,12 @@ export default function Profile() {
         <h1 className="font-signika text-2xl sm:text-3xl">
           Friends{" "}
           <span className="font-firasans text-xl sm:text-2xl">
-            ({user?.friends?.length})
+            ({userData?.friends?.length})
           </span>
         </h1>
         <hr className="mb-6 mt-2" />
         <div className="flex flex-nowrap overflow-x-auto gap-x-3 pb-5">
-          {user?.friends?.map((friend, index) => (
+          {userData?.friends?.map((friend, index) => (
             <Link
               key={index}
               href={`/profile/${friend?._id}`}
