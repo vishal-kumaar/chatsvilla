@@ -1,19 +1,65 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import { useRouter } from "next/navigation";
+import updatePassword from "@/apis/user/updatePassword";
+import SessionTokenContext from "@/contexts/sessionToken/SessionTokenContext";
+import ThemeContext from "@/contexts/theme/ThemeContext";
+import toast from "react-hot-toast";
 
 export default function UpdatePassword() {
+  const [userInput, setUserInput] = useState({
+    oldPassword: "",
+    newPassword: "",
+    confirmNewPassword: "",
+  });
   const [passowrdType, setPasswordType] = useState("password");
-
   const router = useRouter();
+  const { getSessionToken } = useContext(SessionTokenContext);
+  const { isDark } = useContext(ThemeContext);
+
+  const updateUserInput = (fieldName, value) => {
+    setUserInput({
+      ...userInput,
+      [fieldName]: value,
+    });
+  };
+
+  const handleForm = async (event) => {
+    event.preventDefault();
+    const res = await updatePassword(userInput, getSessionToken());
+    if (res?.success) {
+      toast.success(res?.message, {
+        duration: 3000,
+        position: "top-center",
+        style: {
+          borderRadius: "10px",
+          background: isDark ? "#333" : "#fff",
+          color: isDark ? "#fff" : "#000",
+        },
+      });
+      router.back();
+    } else {
+      toast.error(res?.message, {
+        duration: 3000,
+        position: "top-center",
+        style: {
+          borderRadius: "10px",
+          background: isDark ? "#333" : "#fff",
+          color: isDark ? "#fff" : "#000",
+        },
+      });
+    }
+  };
 
   return (
     <div className="w-full min-h-screen py-14 px-4 sm:px-10 bg-[#f5f3f3] dark:bg-[#161616] flex flex-col gap-y-6 justify-center items-center rounded-r-xl">
       <h1 className="font-signika font-bold text-2xl sm:text-3xl text-[#68647a] dark:text-white mb-5">
         Update Password
       </h1>
-      <form className="flex flex-col justify-center gap-y-4 w-full md:w-7/12">
+      <form
+        className="flex flex-col justify-center gap-y-4 w-full md:w-7/12"
+        onSubmit={handleForm}>
         <div className="flex items-center gap-x-2 bg-[#E9E7FF] px-4 py-1.5 rounded-2xl shadow-md">
           <svg
             className="h-4 w-4 fill-[#807c97] dark:fill-[#161616]"
@@ -26,6 +72,10 @@ export default function UpdatePassword() {
             type={passowrdType}
             placeholder="Old Password"
             className="bg-transparent text-sm text-[#807c97] dark:text-[#161616] outline-none placeholder:text-[#807c97] dark:placeholder:text-[#161616] font-poppins w-full"
+            value={userInput.oldPassword}
+            onChange={(event) =>
+              updateUserInput("oldPassword", event.target.value)
+            }
           />
         </div>
         <div className="flex items-center gap-x-2 bg-[#E9E7FF] px-4 py-1.5 rounded-2xl shadow-md">
@@ -40,6 +90,10 @@ export default function UpdatePassword() {
             type={passowrdType}
             placeholder="New Password"
             className="bg-transparent text-sm text-[#807c97] dark:text-[#161616] outline-none placeholder:text-[#807c97] dark:placeholder:text-[#161616] font-poppins w-full"
+            value={userInput.newPassword}
+            onChange={(event) =>
+              updateUserInput("newPassword", event.target.value)
+            }
           />
         </div>
         <div className="flex items-center gap-x-2 bg-[#E9E7FF] px-4 py-1.5 rounded-2xl shadow-md">
@@ -54,6 +108,10 @@ export default function UpdatePassword() {
             type={passowrdType}
             placeholder="Confirm New Password"
             className="bg-transparent text-sm text-[#807c97] dark:text-[#161616] outline-none placeholder:text-[#807c97] dark:placeholder:text-[#161616] font-poppins w-full"
+            value={userInput.confirmNewPassword}
+            onChange={(event) =>
+              updateUserInput("confirmNewPassword", event.target.value)
+            }
           />
         </div>
         <div class="flex gap-1.5 items-center rounded text-[#68647a] dark:text-white ml-2">
