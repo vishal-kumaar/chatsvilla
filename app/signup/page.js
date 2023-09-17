@@ -16,7 +16,7 @@ export default function Signup() {
     name: "",
     username: "",
     email: "",
-    gender: "",
+    gender: "Unknown",
     password: "",
   });
 
@@ -148,8 +148,8 @@ export default function Signup() {
                 onChange={(event) =>
                   updateUserData("gender", event.target.value)
                 }
-                value="Unknown">
-                <option value="Unknown" disabled selected>
+                value={userData.gender}>
+                <option value="Unknown" disabled>
                   Gender
                 </option>
                 <option value="Male" className="text-black">

@@ -170,7 +170,7 @@ export default function UpdateProfile() {
             className="w-full bg-transparent text-base outline-none text-[#807c97] dark:text-[#3d3d3d] -ml-1"
             value={userData.gender}
             onChange={(event) => updateUserDate("gender", event.target.value)}>
-            <option disabled selected value="Unknown">
+            <option disabled value="Unknown">
               Gender
             </option>
             <option value="Male" className="text-black">

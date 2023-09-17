@@ -114,7 +114,7 @@ export default function UpdatePassword() {
             }
           />
         </div>
-        <div class="flex gap-1.5 items-center rounded text-[#68647a] dark:text-white ml-2">
+        <div className="flex gap-1.5 items-center rounded text-[#68647a] dark:text-white ml-2">
           <input
             type="checkbox"
             onChange={(event) =>
