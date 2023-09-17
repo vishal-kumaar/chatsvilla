@@ -1,24 +1,85 @@
 "use client";
 
-import React, { useRef, useState } from "react";
+import React, { useContext, useEffect, useRef, useState } from "react";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
+import updateProfile from "@/apis/user/updateProfile";
+import SessionTokenContext from "@/contexts/sessionToken/SessionTokenContext";
+import toast from "react-hot-toast";
+import ThemeContext from "@/contexts/theme/ThemeContext";
+import UserContext from "@/contexts/user/UserContext";
 
 export default function UpdateProfile() {
+  const [userData, setUserData] = useState({
+    name: "",
+    username: "",
+    gender: "",
+    bio: "",
+  });
   const [selectedImage, setSelectedImage] = useState(null);
   const fileInputRef = useRef(null);
   const router = useRouter();
+  const { getSessionToken } = useContext(SessionTokenContext);
+  const { isDark } = useContext(ThemeContext);
+  const { user } = useContext(UserContext);
 
   const handleImageChange = (event) => {
     const file = event.target.files[0];
     if (file) {
-      setSelectedImage(file);
+      const reader = new FileReader();
+      reader.onload = (e) => {
+        setSelectedImage(e.target.result);
+      };
+      reader.readAsDataURL(file);
     }
   };
 
   const handleButtonClick = () => {
     fileInputRef.current.click();
   };
+
+  const updateUserDate = (fieldName, value) => {
+    setUserData({
+      ...userData,
+      [fieldName]: value,
+    });
+  };
+
+  const handleForm = async (event) => {
+    event.preventDefault();
+    const res = await updateProfile(userData, getSessionToken());
+    if (res?.success) {
+      toast.success(res?.message, {
+        duration: 3000,
+        position: "top-center",
+        style: {
+          borderRadius: "10px",
+          background: isDark ? "#333" : "#fff",
+          color: isDark ? "#fff" : "#000",
+        },
+      });
+      router.back();
+    } else {
+      toast.error(res?.message, {
+        duration: 3000,
+        position: "top-center",
+        style: {
+          borderRadius: "10px",
+          background: isDark ? "#333" : "#fff",
+          color: isDark ? "#fff" : "#000",
+        },
+      });
+    }
+  };
+
+  useEffect(() => {
+    setUserData({
+      name: user?.name,
+      username: user?.username,
+      gender: user?.gender,
+      bio: user?.bio,
+    });
+  }, []);
 
   return (
     <div className="w-full min-h-screen py-14 px-4 sm:px-10 bg-[#f5f3f3] dark:bg-[#161616] flex flex-col gap-y-6 justify-center items-center rounded-r-xl">
@@ -28,7 +89,7 @@ export default function UpdateProfile() {
       <div className="mb-5 relative w-fit">
         <Image
           alt="user-profile"
-          src="/images/user.svg"
+          src={selectedImage || "/images/user.svg"}
           height={160}
           width={160}
           className="w-40 h-40 rounded-full"
@@ -59,7 +120,9 @@ export default function UpdateProfile() {
           </svg>
         </button>
       </div>
-      <form className="flex flex-col justify-center gap-y-4 w-full md:w-7/12">
+      <form
+        className="flex flex-col justify-center gap-y-4 w-full md:w-7/12"
+        onSubmit={handleForm}>
         <div className="flex items-center gap-x-2 bg-[#E9E7FF] px-3.5 py-1.5 rounded-2xl shadow-md">
           <svg
             className="w-4 h-4 stroke-[#807c97] dark:stroke-[#161616]"
@@ -73,6 +136,9 @@ export default function UpdateProfile() {
             type="text"
             placeholder="Full Name"
             className="w-full bg-transparent text-base text-[#807c97] dark:text-[#161616] outline-none placeholder:text-[#807c97] dark:placeholder:text-[#161616] font-poppins"
+            required
+            value={userData.name}
+            onChange={(event) => updateUserDate("name", event.target.value)}
           />
         </div>
         <div className="flex items-center gap-x-2 bg-[#E9E7FF] px-3.5 py-1.5 rounded-2xl shadow-md">
@@ -81,6 +147,9 @@ export default function UpdateProfile() {
             type="text"
             placeholder="Username"
             className="w-full bg-transparent text-base text-[#807c97] dark:text-[#161616] outline-none placeholder:text-[#807c97] dark:placeholder:text-[#161616] font-poppins"
+            required
+            onChange={(event) => updateUserDate("username", event.target.value)}
+            value={userData.username}
           />
         </div>
         <div className="flex items-center gap-x-2 bg-[#E9E7FF] px-3.5 py-1.5 rounded-2xl shadow-md">
@@ -97,8 +166,11 @@ export default function UpdateProfile() {
               d="M67.084 66.531a13.75 13.75 0 0 1-.5.92 21.356 21.356 0 0 1-13.073 10.024 21.718 21.718 0 0 1-5.616.745 21.525 21.525 0 1 1 .125-43.049c.169 0 .342 0 .532.006a58.422 58.422 0 0 1 1.237-5.95s-1.371-.067-1.934-.067a27.152 27.152 0 0 0-23.741 13.77 27.615 27.615 0 0 0 4.006 32.864 6.026 6.026 0 0 1 .954 7.236l-10.08 17.459a2.994 2.994 0 0 1-2.054 1.455 5.808 5.808 0 0 1-2.456-.637l-1.421-1.164a2.09 2.09 0 0 0-2.305-.2 1.978 1.978 0 0 0-.954 2.059l2.257 13.398a1.962 1.962 0 0 0 .955 1.41 5.165 5.165 0 0 0 1.714.148l12.744-4.758a2 2 0 0 0 0-3.742s-2.916-1.078-3.509-2.452a2.817 2.817 0 0 1 .225-2.511l10.055-17.423a6 6 0 0 1 5.194-2.944 6.2 6.2 0 0 1 1.557.2 27.321 27.321 0 0 0 6.947.9A27.6 27.6 0 0 0 71.9 70.253c.291-.514.994-1.948.994-1.948a30.781 30.781 0 0 1-5.81-1.774zM63.2 33.781c-.542-.365-1.88-1.138-1.88-1.138a18.62 18.62 0 0 0-.926 6.509 21.346 21.346 0 0 1 8.895 15.094 36.944 36.944 0 0 0 6.132 2.1A27.523 27.523 0 0 0 63.2 33.781z"
             />
           </svg>
-          <select className="w-full bg-transparent text-base outline-none text-[#807c97] dark:text-[#3d3d3d] -ml-1">
-            <option value="unknown" disabled selected>
+          <select
+            className="w-full bg-transparent text-base outline-none text-[#807c97] dark:text-[#3d3d3d] -ml-1"
+            value={userData.gender}
+            onChange={(event) => updateUserDate("gender", event.target.value)}>
+            <option disabled selected value="Unknown">
               Gender
             </option>
             <option value="Male" className="text-black">
@@ -124,6 +196,8 @@ export default function UpdateProfile() {
             type="text"
             placeholder="Bio"
             className="w-full bg-transparent text-base text-[#807c97] dark:text-[#161616] outline-none placeholder:text-[#807c97] dark:placeholder:text-[#161616] font-poppins"
+            value={userData.bio}
+            onChange={(event) => updateUserDate("bio", event.target.value)}
           />
         </div>
         <div className="mt-3 flex items-center gap-4 justify-center">
