@@ -6,12 +6,15 @@ import SidebarContext from "@/contexts/sidebar/SidebarContext";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import UserContext from "@/contexts/user/UserContext";
+import SessionTokenContext from "@/contexts/sessionToken/SessionTokenContext";
 
 export default function Sidebar() {
   const { sidebar, toggleSidebar } = useContext(SidebarContext);
   const pathname = usePathname();
-  const hideSidebarRoutes = ["/login", "/signup"];
   const { user } = useContext(UserContext);
+  const { removeSession } = useContext(SessionTokenContext);
+
+  const hideSidebarRoutes = ["/login", "/signup"];
 
   const isActive = (path) => {
     const basePath = pathname.split("/")[1];
@@ -155,7 +158,8 @@ export default function Sidebar() {
         <button
           className={`flex items-center outline-none overflow-hidden gap-x-4 hover:bg-[#7472ca] dark:hover:bg-[#535252] ${
             sidebar ? "ml-3.5" : ""
-          } px-2.5 py-2 rounded-lg cursor-pointer`}>
+          } px-2.5 py-2 rounded-lg cursor-pointer`}
+          onClick={removeSession}>
           <Image
             alt="logout"
             src="/icons/logout.svg"
