@@ -5,7 +5,7 @@ import SidebarProvider from "./sidebar/SidebarProvider";
 import ThemeProvider from "./theme/ThemeProvider";
 import DropdownProvider from "./dropdown/DropdownProvider";
 import SessionTokenProvider from "./sessionToken/SessionTokenProvider";
-import ChatListProvider from "./chatList/ChatListProvider";
+import ChatListProvider from "./ChatList/ChatListProvider";
 import UserProvider from "./user/UserProvider";
 
 export default function Contexts({ children }) {

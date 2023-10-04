@@ -3,7 +3,7 @@
 import React, { useContext, useEffect, useState } from "react";
 import Chat from "@/components/Chat";
 import ChatList from "@/components/ChatList";
-import ChatListContext from "@/contexts/chatList/ChatListContext";
+import ChatListContext from "@/contexts/ChatList/ChatListContext";
 import { useParams } from "next/navigation";
 import SessionTokenContext from "@/contexts/sessionToken/SessionTokenContext";
 import getConversation from "@/apis/conversation/getConversation";
